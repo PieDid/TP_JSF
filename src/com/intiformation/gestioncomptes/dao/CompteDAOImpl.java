@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.intiformation.gestioncomptes.model.Client;
-import com.intiformation.gestioncomptes.model.Compte;
+import com.intiformation.gestioncomptes.modele.Client;
+import com.intiformation.gestioncomptes.modele.Compte;
 
 public class CompteDAOImpl implements ICompteDAO {
 
@@ -42,7 +42,7 @@ public class CompteDAOImpl implements ICompteDAO {
 				int client_id = resultatRequete.getInt(6);
 
 				// 4.3. Ajout des données dans l'objet hotel
-				compte = new Compte(id_compte, solde, typeCompte, client_id, decouvert, taux);
+				compte = new Compte(id_compte, solde, typeCompte, decouvert, taux, client_id);
 
 				// 4.4. Ajout de l'objet dans la liste des hotels
 				listComptes.add(compte);
@@ -100,7 +100,7 @@ public class CompteDAOImpl implements ICompteDAO {
 			double decouvert = resultatRequete.getDouble(5);
 			int client_id = resultatRequete.getInt(6);
 
-			compte = new Compte(id_compte, solde, typeCompte, client_id, decouvert, taux);
+			compte = new Compte(id_compte, solde, typeCompte, decouvert, taux, client_id);
 
 			return compte;
 
@@ -146,7 +146,7 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps.setDouble(3, compte.getSolde());
 			ps.setDouble(4, compte.getTaux());
 			ps.setDouble(5, compte.getDecouvert());
-			ps.setInt(6, compte.getIdClient());
+			ps.setInt(6, compte.getClientId());
 
 			// 3. Exécution de la requête + récup du résultat
 
@@ -192,7 +192,7 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps.setDouble(1, compte.getSolde());
 			ps.setDouble(2, compte.getTaux());
 			ps.setDouble(3, compte.getDecouvert());
-			ps.setInt(4, compte.getIdClient());
+			ps.setInt(4, compte.getClientId());
 			ps.setInt(5, compte.getIdCompte());
 
 			// 3. Exécution de la requête + récup du résultat
@@ -276,7 +276,7 @@ public class CompteDAOImpl implements ICompteDAO {
 				double decouvert = resultatRequete.getDouble(5);
 				int client_id = resultatRequete.getInt(6);
 
-				compte = new Compte(id_compte, solde, typeCompte, client_id, decouvert, taux);
+				compte = new Compte(id_compte, solde, typeCompte, decouvert, taux, client_id);
 
 				listComptes.add(compte);
 

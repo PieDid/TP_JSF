@@ -2,7 +2,7 @@ package com.intiformation.gestioncomptes.dao;
 
 import java.sql.Connection;
 
-import com.intiformation.gestioncomptes.model.Conseiller;
+import com.intiformation.gestioncomptes.modele.Conseiller;
 import com.intiformation.gestioncomptes.tool.DBConnection;
 
 public interface IConseillerDAO {
@@ -29,4 +29,4 @@ public interface IConseillerDAO {
 	public Conseiller getConseillerbyId(int pIdConseiller);
 }
 
-}
+

@@ -3,7 +3,7 @@ package com.intiformation.gestioncomptes.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import com.intiformation.gestioncomptes.model.Client;
+import com.intiformation.gestioncomptes.modele.Client;
 import com.intiformation.gestioncomptes.tool.DBConnection;
 
 public interface IClientDAO {

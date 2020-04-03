@@ -4,8 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.intiformation.gestioncomptes.model.Client;
-import com.intiformation.gestioncomptes.model.Conseiller;
+import com.intiformation.gestioncomptes.modele.Client;
+import com.intiformation.gestioncomptes.modele.Conseiller;
 
 /**
  * implémentation concrète de la couche DAO du conseiller <br/>

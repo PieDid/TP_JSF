@@ -6,9 +6,55 @@
 
 <h:head>
 	<title>Page d'authentification</title>
+	
+	<!-- Insertion du style css -->
+	<h:outputStylesheet library="styles" name="StyleAuthentification.css"/>
+	
 </h:head> 
-<body> 
+<body id="bodyAuthentification"> 
 
+	<!-- ======================================================== -->
+	<!-- ========== Affichage des messages globaux  ============= -->
+	<!-- ======================================================== -->
+	
+	
 
+	<!-- ======================================================== -->
+	<!-- ============= Formulaire de connexion ================== -->
+	<!-- ======================================================== -->
+	
+	
+	
+	<div class="formulaire">
+	<h:graphicImage library="images" name="authentification.png" width="100%"/> 
+	<h:form id = "formAuthentification">
+		
+		<h:panelGrid columns="3" cellpadding="1" cellspacing="2" width="100%">
+		
+			<f:facet name="header">
+				<div class="titreForm">Formulaire de connexion</div>
+			</f:facet>
+			
+			<h:outputLabel for="idLogin" value="e-mail : " />
+			<h:inputText id="idLogin" required="true" 
+						 requiredMessage="e-mail obligatoire !"
+						 value="#{authentificationBean.login}"/>
+			<h:message for="idLogin" styleClass="error"/>
+			
+			<h:outputLabel for="idPwd" value="Mot de passe : " />
+			<h:inputText id="idPwd"  required="true" 
+						 requiredMessage="Mot de passe obligatoire !"
+						 value="#{authentificationBean.password}"/>
+			<h:message for="idPwd" styleClass="error"/>
+			
+			<f:facet name="footer">
+				<h:commandButton value="Se connecter" action="#{authentificationBean.connecter()}"/>
+			</f:facet>
+		
+		</h:panelGrid>
+		<h:messages globalOnly="true" styleClass="error" layout="table" showDetail="true"/>
+	</h:form>
+	</div>	
+	
 </body> 
 </html>

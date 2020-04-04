@@ -60,6 +60,15 @@
 				<to-view-id>/accueil.xhtml</to-view-id>
 			</navigation-case>
 			
+			<!-- 2.2. Cas de navigation : accueil-client.xhtml vers accueil-client.xhtml (Ajout) -->
+			<navigation-case>
+				<!-- 2.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>listeClient</from-outcome>
+				<!-- 2.2.2. Page de destination -->
+				<to-view-id>/accueil_client.xhtml</to-view-id>
+			</navigation-case>
+			
+			
 		</navigation-rule>
 		
 		
@@ -93,7 +102,6 @@
 				<!-- 4.2.2. Page de destination -->
 				<to-view-id>/accueil_client.xhtml</to-view-id>
 			</navigation-case>			
-		
 		</navigation-rule>
 		
 		
@@ -125,6 +133,14 @@
 				<from-outcome>accueil</from-outcome>
 				<!-- 5.4.2. Page de destination -->
 				<to-view-id>/accueil.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 5.5. Cas de navigation : accueil-clien.xhtml vers accueil_compte.xhtml (Suppression) -->
+			<navigation-case>
+				<!-- 5.4.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 5.4.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
 			</navigation-case>
 			
 		</navigation-rule>

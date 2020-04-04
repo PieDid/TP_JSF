@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Page de gestion des clients</title>
+</h:head> 
+<body> 
+
+	<ui:composition template="/templates/layout.xhtml">
+	
+	<ui:define name="content">
+		
+			<!-- ======================================================= -->
+	<!-- =============== Affichage des messages ================ -->
+	<!-- ======================================================= -->
+	<br/>
+	<h:messages globalOnly="true" showDetail="true" infoStyle="color:green;" fatalStyle="color:red;"/>
+	
+	<!-- =============================================================== -->
+	<!-- ======== Affichage de la liste des livres dans la bdd ========= -->
+	<!-- =============================================================== -->
+	<!-- 
+		> affichage de la liste avec le composant JSF '<h:dataTable>' :
+				-> attribut 'value' : liste a afficher
+				-> attribut 'var'   : itération courante
+				
+		> findAllLivresBdd() retourne une list<Livre>
+		> la variable book est un objet de type Livre avec les props idLivre, titre, auteur, disponible;
+		
+	 -->	
+	 
+	<h2>Liste des livres</h2>
+	
+	<h:form>
+		<h:dataTable value="#{gestionClient.allClients}" var="client" border="1" width="60%">
+			
+			<!-- colonne pour afficher l'id du livre : nom de la colonne + données -->
+			<h:column>
+				<!-- en-tête de la colonne -->
+				<f:facet name="header">
+					<h:outputText value="ID Client" />
+				</f:facet>
+				<!-- donnée de la colonne -->
+				<h:outputText value="#{client.idClient}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nom" />
+				</f:facet>
+				<h:outputText value="#{client.nom}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Prenom" />
+				</f:facet>
+				<h:outputText value="#{client.prenom}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Adresse" />
+				</f:facet>
+				<h:outputText value="#{client.adresse}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="CP" />
+				</f:facet>
+				<h:outputText value="#{client.codePostal}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ville" />
+				</f:facet>
+				<h:outputText value="#{client.ville}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Téléphone" />
+				</f:facet>
+				<h:outputText value="#{client.telephone}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID Conseiller" />
+				</f:facet>
+				<h:outputText value="#{client.idConseiller}"/>
+			</h:column>
+			
+			<!-- colonne pour supprimer le livre -->
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Supprimer" />
+				</f:facet>
+				<!-- Donnée de la colonne : lien pour la suppression -->
+				<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+				<h:commandLink id="delete" action="listeClient" actionListener="#{gestionClient.deleteClientById()}" >
+					
+					<!-- passage de paramètre au composant : nom deleteID / valeur = l'id du livre -->
+					<f:param id="deleteID" name="id" value="#{client.idClient}" />
+					
+					<!-- label du lien -->
+					<h:outputText value="Supprimer" />
+				</h:commandLink>
+			</h:column>
+			
+			<!-- colonne pour modifier le livre -->
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Modifier" />
+				</f:facet>
+				<!-- Donnée de la colonne : lien pour la suppression -->
+				<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+				<h:commandLink id="update" action="updateClient" actionListener="#{gestionClient.updateClient()}" >
+					
+					<!-- passage de paramètre au composant : nom updateID / valeur = l'id du livre -->
+					<f:param id="updateID" name="id" value="#{client.idClient}" />
+					
+					<!-- label du lien -->
+					<h:outputText value="Modifier" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		
+		
+		<br/><br/><br/>
+		<!-- ========================================================== -->
+		<!-- ============= Bouton pour ajouter un livre =============== -->
+		<!-- ========================================================== -->
+		<!-- 
+			> attributs de h:commandeButton:
+				- action : clé d'outcome (ref faces-config.xml)
+				- actionListener : méthode à invoquer dans le MB
+				- value : label du bouton
+			
+			> au click sur le bouton :
+				-> appel de la méthode initialiserLivre() du MB qui permet d'initialiser un objet Livre vide 
+				   pour pouvoir récupérer les valeurs du formulaire d'ajout. 
+				-> naviguer vers le formulaire d'ajout de la page ajouter_livre.xhtml	
+		 -->
+		
+		<h:commandButton action="addClient" actionListener="#{gestionClient.addClient()}" value="Ajouter un nouveau client" />
+		
+	</h:form>	
+		
+		</ui:define>
+
+	</ui:composition>
+
+</body> 
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head></h:head>
+<body>
+
+	<!-- 
+			> pour l'implémentation des templates en jsf,
+			  on utilise la taglibs 'facelets' (prefixe ui)
+	
+			> utilisation du fragment :
+					-> seul le contenu de la balise ui:composition sera pris en compte.
+	 -->
+
+	<!-- ========================================================== -->
+	<!-- =============== Contenu par défaut du header ============= -->
+	<!-- ========================================================== -->
+	<ui:composition>
+		<b:navBar brand="Accueil" brandHref="accueil.xhtml" fluid="true">
+			<b:navbarLinks>
+				<b:navLink value="Gestion des Clients" href="accueil_client.xhtml"></b:navLink>
+				<b:navLink value="Gestions des Comptes" href="accueil_compte.xhtml"></b:navLink>
+			</b:navbarLinks>
+			
+			
+			
+			<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+			
+			<b:navbarLinks pull="right" styleClass="hidden-xs">
+			
+			<h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
+			 <b:commandButton value="Se déconnecter" action="#{authentificationBean.deconnecter()}" look="info" style="width:100%;"/>
+			</h:form>
+				
+			
+			</b:navbarLinks>
+		</b:navBar>
+	</ui:composition>
+
+</body>
+</html>
+

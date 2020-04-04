@@ -85,6 +85,22 @@ public class AuthentificationBean implements Serializable {
 
 	} // end connecter()
 
+	public String deconnecter() {
+
+		// context de JSF
+		FacesContext contextJSF = FacesContext.getCurrentInstance();
+
+		// recup de la session de l'utilisateur
+		HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(false);
+
+		// déconnection
+		session.invalidate();
+
+		/* redirection (navigation) vers la page du formulaire authentification.xhtml */
+		return "authentification.xhtml";
+
+	} // end deconnecter()
+	
 	/* __________________ getters/setters __________________________ */
 
 	/**

@@ -42,6 +42,9 @@
     TARGET="rules:#modifier_client.xhtml" TITLE="updateClient" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="accueil::#accueil.xhtml" NAME="output2"
     PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="listeClient::#accueil_client.xhtml"
+    NAME="output3" PATH="/accueil_client.xhtml"
+    TARGET="rules:#accueil_client.xhtml" TITLE="listeClient" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#accueil_compte.xhtml"
@@ -56,6 +59,9 @@
     TARGET="rules:#modifier_compte.xhtml" TITLE="updateCompte" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="accueil::#accueil.xhtml" NAME="output2"
     PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="listeCompte::#accueil_compte.xhtml"
+    NAME="output3" PATH="/accueil_compte.xhtml"
+    TARGET="rules:#accueil_compte.xhtml" TITLE="listeCompte" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#modifier_compte.xhtml"

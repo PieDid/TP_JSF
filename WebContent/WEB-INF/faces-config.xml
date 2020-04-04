@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<faces-config version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+		<!-- Configuration de la navigation -->
+		<!-- ============================== -->
+		<!-- 1. Règles de navigation pour la page 'accueil.xhtml' -->
+		<navigation-rule>
+			<!-- 1.1. Page de départ -->
+			<from-view-id>/accueil.xhtml</from-view-id>
+			
+			<!-- 1.2. Cas de navigation : accueil.xhtml vers accueil-client.xhtml (Suppression) -->
+			<navigation-case>
+				<!-- 1.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>listeClient</from-outcome>
+				<!-- 1.2.2. Page de destination -->
+				<to-view-id>/accueil_client.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 1.3. Cas de navigation : accueil.xhtml vers accueil-compte.xhtml (Suppression) -->
+			<navigation-case>
+				<!-- 1.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 1.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>
+			
+		</navigation-rule>
+			
+			
+		<!-- 2. Règle de navigation pour la page 'acceuil_client.xhtml' -->	
+		<navigation-rule>
+		
+			<!-- 2.1. Page de départ -->
+			<from-view-id>/accueil_client.xhtml</from-view-id>
+		
+			<!-- 2.2. Cas de navigation : accueil-client.xhtml vers ajouter_client.xhtml (Ajout) -->
+			<navigation-case>
+				<!-- 2.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>addClient</from-outcome>
+				<!-- 2.2.2. Page de destination -->
+				<to-view-id>/ajouter_client.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 2.3. Cas de navigation : accueil.xhtml vers modifier_client.xhtml (Modification) -->
+			<navigation-case>
+				<!-- 2.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>updateClient</from-outcome>
+				<!-- 2.3.2. Page de destination -->
+				<to-view-id>/modifier_client.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 2.4. Cas de navigation : accueil-clien.xhtml vers accueil.xhtml (Suppression) -->
+			<navigation-case>
+				<!-- 2.4.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>accueil</from-outcome>
+				<!-- 2.4.2. Page de destination -->
+				<to-view-id>/accueil.xhtml</to-view-id>
+			</navigation-case>
+			
+		</navigation-rule>
+		
+		
+		<!-- 3. Règle de navigation pour la page 'modifier_client.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 3.1. Page de départ -->
+			<from-view-id>/modifier_client.xhtml</from-view-id>
+			
+			<!-- 3.2. Cas de navigation : modifier_client.xhtml vers accueil.xhtml -->
+			<navigation-case>
+				<!-- 3.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton de modifier_client.xhtml) -->
+				<from-outcome>listeClient</from-outcome>
+				<!-- 3.2.2. Page de destination -->
+				<to-view-id>/accueil_client.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		
+		<!-- 4. Règle de navigation pour la page 'ajouter_client.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 4.1. Page de départ -->
+			<from-view-id>/ajouter_client.xhtml</from-view-id>
+			
+			<!-- 4.2. Cas de navigation : ajouter_client.xhtml vers accueil.xhtml (Modification) -->
+			<navigation-case>
+				<!-- 4.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton de ajouter_client.xhtml) -->
+				<from-outcome>listeClient</from-outcome>
+				<!-- 4.2.2. Page de destination -->
+				<to-view-id>/accueil_client.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		
+		<!-- 5. Règle de navigation pour la page 'acceuil_compte.xhtml' -->	
+		<navigation-rule>
+		
+			<!-- 5.1. Page de départ -->
+			<from-view-id>/accueil_compte.xhtml</from-view-id>
+		
+			<!-- 5.2. Cas de navigation : accueil-client.xhtml vers ajouter_compte.xhtml (Ajout) -->
+			<navigation-case>
+				<!-- 5.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>addCompte</from-outcome>
+				<!-- 5.2.2. Page de destination -->
+				<to-view-id>/ajouter_compte.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 5.3. Cas de navigation : accueil.xhtml vers modifier_compte.xhtml (Modification) -->
+			<navigation-case>
+				<!-- 5.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>updateCompte</from-outcome>
+				<!-- 5.3.2. Page de destination -->
+				<to-view-id>/modifier_compte.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 5.4. Cas de navigation : accueil-clien.xhtml vers accueil.xhtml (Suppression) -->
+			<navigation-case>
+				<!-- 5.4.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>accueil</from-outcome>
+				<!-- 5.4.2. Page de destination -->
+				<to-view-id>/accueil.xhtml</to-view-id>
+			</navigation-case>
+			
+		</navigation-rule>
+		
+		<!-- 6. Règle de navigation pour la page 'modifier_compte.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 6.1. Page de départ -->
+			<from-view-id>/modifier_compte.xhtml</from-view-id>
+			
+			<!-- 6.2. Cas de navigation : modifier_client.xhtml vers accueil.xhtml -->
+			<navigation-case>
+				<!-- 6.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton de modifier_compte.xhtml) -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 6.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		
+		<!-- 7. Règle de navigation pour la page 'ajouter_client.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 7.1. Page de départ -->
+			<from-view-id>/ajouter_compte.xhtml</from-view-id>
+			
+			<!-- 7.2. Cas de navigation : ajouter_client.xhtml vers accueil.xhtml (Modification) -->
+			<navigation-case>
+				<!-- 7.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton de ajouter_compte.xhtml) -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 7.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+</faces-config>

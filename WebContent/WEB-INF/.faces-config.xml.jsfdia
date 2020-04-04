@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#accueil.xhtml" PATH="/accueil.xhtml"
+  SHAPE="272,296,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#accueil.xhtml:0" NAME="item"
+   PATH="/accueil.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listeClient::#accueil_client.xhtml"
+    NAME="output" PATH="/accueil_client.xhtml"
+    TARGET="rules:#accueil_client.xhtml" TITLE="listeClient" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="listeCompte::#accueil_compte.xhtml"
+    NAME="output1" PATH="/accueil_compte.xhtml"
+    TARGET="rules:#accueil_compte.xhtml" TITLE="listeCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modifier_client.xhtml"
+  PATH="/modifier_client.xhtml" SHAPE="416,232,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#modifier_client.xhtml:0" NAME="item"
+   PATH="/modifier_client.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listeClient::#accueil_client.xhtml"
+    NAME="output" PATH="/accueil_client.xhtml"
+    TARGET="rules:#accueil_client.xhtml" TITLE="listeClient" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ajouter_client.xhtml"
+  PATH="/ajouter_client.xhtml" SHAPE="416,48,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ajouter_client.xhtml:0" NAME="item"
+   PATH="/ajouter_client.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listeClient::#accueil_client.xhtml"
+    NAME="output" PATH="/accueil_client.xhtml"
+    TARGET="rules:#accueil_client.xhtml" TITLE="listeClient" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#accueil_client.xhtml"
+  PATH="/accueil_client.xhtml" SHAPE="232,120,50,73" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#accueil_client.xhtml:0" NAME="item"
+   PATH="/accueil_client.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="addClient::#ajouter_client.xhtml"
+    NAME="output" PATH="/ajouter_client.xhtml"
+    TARGET="rules:#ajouter_client.xhtml" TITLE="addClient" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="updateClient::#modifier_client.xhtml"
+    NAME="output1" PATH="/modifier_client.xhtml"
+    TARGET="rules:#modifier_client.xhtml" TITLE="updateClient" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="accueil::#accueil.xhtml" NAME="output2"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#accueil_compte.xhtml"
+  PATH="/accueil_compte.xhtml" SHAPE="224,464,50,73" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#accueil_compte.xhtml:0" NAME="item"
+   PATH="/accueil_compte.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="addCompte::#ajouter_compte.xhtml"
+    NAME="output" PATH="/ajouter_compte.xhtml"
+    TARGET="rules:#ajouter_compte.xhtml" TITLE="addCompte" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="updateCompte::#modifier_compte.xhtml"
+    NAME="output1" PATH="/modifier_compte.xhtml"
+    TARGET="rules:#modifier_compte.xhtml" TITLE="updateCompte" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="accueil::#accueil.xhtml" NAME="output2"
+    PATH="/accueil.xhtml" TARGET="rules:#accueil.xhtml" TITLE="accueil" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#modifier_compte.xhtml"
+  PATH="/modifier_compte.xhtml" SHAPE="416,600,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#modifier_compte.xhtml:0" NAME="item"
+   PATH="/modifier_compte.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listeCompte::#accueil_compte.xhtml"
+    NAME="output" PATH="/accueil_compte.xhtml"
+    TARGET="rules:#accueil_compte.xhtml" TITLE="listeCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ajouter_compte.xhtml"
+  PATH="/ajouter_compte.xhtml" SHAPE="416,456,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ajouter_compte.xhtml:0" NAME="item"
+   PATH="/ajouter_compte.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listeCompte::#accueil_compte.xhtml"
+    NAME="output" PATH="/accueil_compte.xhtml"
+    TARGET="rules:#accueil_compte.xhtml" TITLE="listeCompte" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

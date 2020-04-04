@@ -52,9 +52,10 @@ public class ClientDAOImpl implements IClientDAO {
 
 	/**
 	 * ajout d'un client
+	 * @return 
 	 */
 	@Override
-	public void ajouterClient(Client client) {
+	public boolean addClient(Client client) {
 		PreparedStatement ps = null;
 
 		try {
@@ -86,14 +87,16 @@ public class ClientDAOImpl implements IClientDAO {
 				e.printStackTrace();
 			}
 		}
+		return false;
 
 	}
 
 	/**
 	 * modification d'un client
+	 * @return 
 	 */
 	@Override
-	public void modifierClient(Client client) {
+	public boolean updateClient(Client client) {
 		PreparedStatement ps = null;
 
 		try {
@@ -128,14 +131,16 @@ public class ClientDAOImpl implements IClientDAO {
 				e.printStackTrace();
 			}
 		}
+		return false;
 
 	}
 
 	/**
 	 * suppression d'un client
+	 * @return 
 	 */
 	@Override
-	public void supprimerClientById(int pIdClient) {
+	public boolean deleteClientById(int pIdClient) {
 
 		PreparedStatement ps = null;
 
@@ -163,6 +168,7 @@ public class ClientDAOImpl implements IClientDAO {
 				e.printStackTrace();
 			}
 		}
+		return false;
 	}
 
 	/**

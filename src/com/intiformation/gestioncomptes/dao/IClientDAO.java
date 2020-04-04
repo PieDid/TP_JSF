@@ -22,20 +22,23 @@ public interface IClientDAO {
 	/**
 	 * Ajouter un client
 	 * @param client
+	 * @return 
 	 */
-	public void ajouterClient(Client client);
+	public boolean addClient(Client client);
 
 	/**
 	 * Modifier un client
 	 * @param client
+	 * @return 
 	 */
-	public void modifierClient(Client client);
+	public boolean updateClient(Client client);
 
 	/**
 	 * Supprime un client a partir de son ID
 	 * @param pIdClient
+	 * @return 
 	 */
-	public void supprimerClientById(int pIdClient);
+	public boolean deleteClientById(int pIdClient);
 
 	/**
 	 * Récupérer un client a partir de son ID

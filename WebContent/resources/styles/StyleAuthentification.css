@@ -8,7 +8,7 @@
 .formulaire{
 	/*****centré horizontalement*****/
 margin:auto;
-text-align: center; /*pour corriger le fameux bug IE*/
+text-align: right;
  
 /****centré verticalement*****/
 position:absolute;
@@ -17,16 +17,16 @@ top: 20%; /*A et B Paramètre à fixer en fonction de la taille du contenu*/
 
 }
 
-
 .titreForm{
+	text-align: center;
 	margin-bottom: 10px;
 	font-size : 30px;
 	font-weight: bold;
-	color: green;
+	color: skyblue;
 }
 
 .error{
-	
+	text-align: center;
 	color: red;
 	font-weight: bold;
 

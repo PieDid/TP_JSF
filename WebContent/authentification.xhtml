@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"> 
 
 <h:head>
 	<title>Page d'authentification</title>
@@ -35,20 +37,24 @@
 				<div class="titreForm">Formulaire de connexion</div>
 			</f:facet>
 			
-			<h:outputLabel for="idLogin" value="e-mail : " />
-			<h:inputText id="idLogin" required="true" 
-						 requiredMessage="e-mail obligatoire !"
-						 value="#{authentificationBean.login}"/>
+   			
+			
+		
+			 <p:outputLabel styleClass="text" for="idLogin" value="e-mail : " />
+    		  <p:inputText id="idLogin" required="true" 
+						 requiredMessage="e-mail obligatoire !" value="#{authentificationBean.login}" />
 			<h:message for="idLogin" styleClass="error"/>
 			
-			<h:outputLabel for="idPwd" value="Mot de passe : " />
-			<h:inputText id="idPwd"  required="true" 
+			
+			<p:outputLabel styleClass="text" for="idPwd" value="Mot de passe : " />
+			<p:password id="idPwd"  required="true" 
 						 requiredMessage="Mot de passe obligatoire !"
 						 value="#{authentificationBean.password}"/>
 			<h:message for="idPwd" styleClass="error"/>
 			
+			
 			<f:facet name="footer">
-				<h:commandButton value="Se connecter" action="#{authentificationBean.connecter()}"/>
+			 <b:commandButton value="Se connecter" action="#{authentificationBean.connecter()}" look="info" style="width:100%; margin-top:10px;"/>
 			</f:facet>
 		
 		</h:panelGrid>

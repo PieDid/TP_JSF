@@ -10,8 +10,11 @@ import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import com.intiformation.gestioncomptes.dao.ClientDAOImpl;
 import com.intiformation.gestioncomptes.dao.CompteDAOImpl;
+import com.intiformation.gestioncomptes.dao.IClientDAO;
 import com.intiformation.gestioncomptes.dao.ICompteDAO;
+import com.intiformation.gestioncomptes.modele.Client;
 import com.intiformation.gestioncomptes.modele.Compte;
 
 @ManagedBean(name = "gestionCompte")
@@ -20,9 +23,9 @@ public class GestionCompteBean implements Serializable {
 
 	/* _____________________ props __________________________ */
 
-	// -> liste des comptes pour alimenter la table la page accueil_comptes.xhtml
+	// -> liste des comptes pour alimenter la table la page accueil_comptes.xhtml et des clients pour ChangerClient et Ajouter
 	List<Compte> listeCompteBDD;
-
+	List<Client> listeClientBDD;
 	// -> prop compte pour l'ajout et l'édition
 	private Compte compte;
 
@@ -32,8 +35,9 @@ public class GestionCompteBean implements Serializable {
 	// -> prop id compteReceveur pour le virement
 	private int idcompteReceveur;
 	
-	// -> dao du compte
+	// -> dao du compte et des clients
 	ICompteDAO compteDAO;
+	IClientDAO clientDAO;
 
 	/* _____________________ ctors __________________________ */
 
@@ -42,6 +46,7 @@ public class GestionCompteBean implements Serializable {
 	 */
 	public GestionCompteBean() {
 		compteDAO = new CompteDAOImpl();
+		clientDAO = new ClientDAOImpl();
 	} // end constructor
 
 	/* ____________________ méthodes ________________________ */
@@ -52,6 +57,10 @@ public class GestionCompteBean implements Serializable {
 	 */
 	public List<Compte> getAllComptes() {
 		return compteDAO.getAllComptes();
+	} // end getAllComptes()
+	
+	public List<Client> getAllClients() {
+		return clientDAO.getAllClients();
 	} // end getAllComptes()
 
 	public void supprimerCompte(ActionEvent event) {

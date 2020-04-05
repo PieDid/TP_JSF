@@ -20,6 +20,7 @@ public class AuthentificationBean implements Serializable {
 	// les propiétés pour la connection
 	private String login;
 	private String password;
+	private String idConseiller;
 
 	// la DAO du conseiller
 	public IConseillerDAO conseillerDAO;
@@ -55,7 +56,7 @@ public class AuthentificationBean implements Serializable {
 
 			/* sauvegarde du login dans la session */
 			session.setAttribute("user_login", login);
-
+			
 			/* redirection (navigation) vers la page accueil.xhtml */
 			return "accueil.xhtml";
 
@@ -131,4 +132,20 @@ public class AuthentificationBean implements Serializable {
 		this.password = password;
 	}
 
+	/**
+	 * @return the idConseiller
+	 */
+	public String getIdConseiller() {
+		return idConseiller;
+	}
+
+	/**
+	 * @param idConseiller the idConseiller to set
+	 */
+	public void setIdConseiller(String idConseiller) {
+		this.idConseiller = idConseiller;
+	}
+
+	
+	
 }

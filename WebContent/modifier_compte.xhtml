@@ -63,9 +63,11 @@
 
 						<p:outputLabel styleClass="text" for="idCLient"
 							value="id Client : " />
-						<p:inputText id="idCLient" required="true"
-							requiredMessage="Id du client obligatoire !"
-							value="#{gestionCompte.compte.clientId}" />
+						<p:selectOneMenu id="idCLient" value="#{gestionCompte.compte.clientId}" style="width:250px">
+						 <f:selectItem itemLabel="Choisir un client" itemValue="#{gestionCompte.compte.clientId}" />
+						 <f:selectItems value="#{gestionCompte.allClients}" var="client" 
+       							 itemLabel="Client n° #{client.idClient} : #{client.nom.toUpperCase()} #{client.prenom} (Conseiller n° #{client.idConseiller})" itemValue="#{client.idClient}" />
+      					 </p:selectOneMenu>
 						<h:message for="idCLient" styleClass="error" />
 
 						<f:facet name="footer">

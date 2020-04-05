@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<title>Page de gestion des comptes</title>
+	<h:outputScript library="scripts" name="jquery-3.4.1.js"/>
+	<h:outputScript library="scripts" name="monScript.js"/>
 </h:head>
 <body>
 
@@ -25,10 +28,10 @@
 
 			<h2>Liste des Comptes</h2>
 
-			<h:form style="text-align: center;">
-				<h:dataTable value="#{gestionCompte.allComptes}" var="compte"
-					border="1" width="60%">
-
+			<h:form style="text-align: left;">
+				<h:dataTable class="table table-striped" value="#{gestionCompte.allComptes}" var="compte"
+					 width="100%">
+				
 					<!-- colonne pour afficher l'id du livre : nom de la colonne + données -->
 					<h:column>
 						<!-- en-tête de la colonne -->
@@ -77,7 +80,7 @@
 					<!-- colonne pour supprimer le compte -->
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Supprimer" />
+							<h:outputText value="" />
 						</f:facet>
 						<!-- Donnée de la colonne : lien pour la suppression -->
 						<!-- 
@@ -99,7 +102,7 @@
 					<!-- colonne pour modifier le compte -->
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Modifier" />
+							<h:outputText value="" />
 						</f:facet>
 						<!-- Donnée de la colonne : lien pour la suppression -->
 						<!-- 
@@ -120,7 +123,7 @@
 					
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Modifier le client" />
+							<h:outputText value="" />
 						</f:facet>
 						
 						<h:commandLink action="changeClientCompte" actionListener="#{gestionCompte.choisirCompte}">
@@ -132,7 +135,7 @@
 					
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Dépot" />
+							<h:outputText value="" />
 						</f:facet>
 						
 						<h:commandLink action="depotCompte" actionListener="#{gestionCompte.choisirCompte}">
@@ -144,7 +147,7 @@
 					
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Retrait" />
+							<h:outputText value="" />
 						</f:facet>
 						
 						<h:commandLink action="retraitCompte" actionListener="#{gestionCompte.choisirCompte}">
@@ -156,7 +159,7 @@
 					
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Virement" />
+							<h:outputText value="" />
 						</f:facet>
 						
 						<h:commandLink action="virementCompte" actionListener="#{gestionCompte.choisirCompte}">
@@ -165,7 +168,6 @@
 						</h:commandLink>
 						
 					</h:column>
-					
 					
 					
 				</h:dataTable>
@@ -202,7 +204,49 @@
 			<h:messages globalOnly="true" showDetail="true"
 				infoStyle="color:green;" fatalStyle="color:red;" />
 
-		</ui:define>
+
+			<br/>
+		<br/>
+		<div id="aide" style="text-align: center; color:#1111111">
+		<h:graphicImage library="images" name="aide.png" width="25px" /><br/>
+		Aide
+		</div>
+		<div id="tableau-aide" style=" color:#1111111">
+		<table style="margin: auto; text-align: center; padding : auto;">
+			<tr>
+			<td><h:graphicImage library="images" name="supprimer.png" width="25px" /></td>
+			<td><h:graphicImage library="images" name="modifier.png" width="25px" /></td>
+			<td><h:graphicImage library="images" name="changerClient.png" width="25px" /></td>
+			<td><h:graphicImage library="images" name="depot.jpg" width="25px" /></td>
+			<td><h:graphicImage library="images" name="retrait.jpg" width="25px" /></td>
+			<td><h:graphicImage library="images" name="virement.png" width="25px" /></td>	
+			</tr>
+			<tr>
+			<td>
+			Supprimer
+			</td>
+			<td>
+			Modifier
+			</td>
+			<td>
+			Changer de client
+			</td>
+			<td>
+			Dépot
+			</td>
+			<td>
+			Retrait
+			</td>
+			<td>
+			Virement
+			</td>
+			</tr>
+		</table>
+		
+		</div>
+
+		
+		</ui:define>		
 
 	</ui:composition>
 

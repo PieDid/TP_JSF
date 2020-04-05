@@ -6,6 +6,8 @@
 
 <h:head>
 	<title>Page de gestion des clients</title>
+	<h:outputScript library="scripts" name="jquery-3.4.1.js"/>
+	<h:outputScript library="scripts" name="monScript.js"/>
 </h:head> 
 <body> 
 
@@ -30,13 +32,13 @@
 	 
 	<h2>Liste des Clients</h2>
 	
-	<h:form>
-		<h:dataTable value="#{gestionClient.allClients}" var="client" border="1" width="60%">
+	<h:form style="text-align: left;">
+		<h:dataTable class="table table-striped" value="#{gestionClient.allClients}" var="client" width="100%">
 			
 			<!-- colonne pour afficher l'id du livre : nom de la colonne + données -->
-			<h:column>
+			<h:column >
 				<!-- en-tête de la colonne -->
-				<f:facet name="header">
+				<f:facet  name="header">
 					<h:outputText value="ID Client" />
 				</f:facet>
 				<!-- donnée de la colonne -->

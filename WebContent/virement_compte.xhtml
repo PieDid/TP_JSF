@@ -4,7 +4,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" 
-	xmlns:b="http://bootsfaces.net/ui"> 
+	xmlns:b="http://bootsfaces.net/ui"
+	> 
 
 <h:head>
 	<title>Page de virement</title>
@@ -22,30 +23,31 @@
 
 					<f:facet name="header">
 						<div style="text-align: center;">
-							<h:graphicImage library="images" name="depot.jpg" width="40%" />
+							<h:graphicImage library="images" name="virement.png" width="40%" />
 						</div>
 					</f:facet>
 
 					<f:facet name="header">
 						<div
 							style="text-align: center; margin-bottom: 10px; font-size: 30px; font-weight: bold; color: skyblue;">
-							Modification d'un Compte</div>
+							Virement</div>
 					</f:facet>
 
 				<div>
-							
-						<p:outputLabel styleClass="text" for="montantVirement" value="Montant du virement (€) : " />
-						<p:inputText id="montantVirement" required="true"
-							requiredMessage="montant obligatoire !"
-							value="#{gestionCompte.montant}" />
+						
+						<p:outputLabel styleClass="text" for="montantVirement" value="Montant du virement: " />
+						<p:spinner id="montantVirement" value="#{gestionCompte.montant}" suffix=" €" min="0" required="true"
+							requiredMessage="montant obligatoire !"/>
 						<h:message for="montantVirement" styleClass="error" />	
 
 						<p:outputLabel styleClass="text" for="compteReceveur" value="ID du compte receveur : " />
-						<p:inputText id="compteReceveur" required="true"
-							requiredMessage="ID du compte receveur obligatoire !"
-							value="#{gestionCompte.idcompteReceveur}" />
+						 <p:selectOneMenu id="compteReceveur" value="#{gestionCompte.idcompteReceveur}" style="width:173px">
+						 <f:selectItem itemLabel="Choisir un compte" itemValue="#{gestionCompte.compte.idCompte}" />
+						 <f:selectItems value="#{gestionCompte.allComptes}" var="compteR" 
+       							 itemLabel="Compte n° #{compteR.idCompte} (solde : #{compteR.solde} €,  Compte #{compteR.typeCompte}, client n°#{compteR.clientId})" itemValue="#{compteR.idCompte}" />
+      					 </p:selectOneMenu>
 						<h:message for="compteReceveur" styleClass="error" />	
-
+						
 						<f:facet name="footer">
 							<b:commandButton value="Effectuer le virement" action="listeCompte"
 								actionListener="#{gestionCompte.virement}" look="success"

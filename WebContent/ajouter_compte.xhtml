@@ -20,12 +20,12 @@
 
 			<h:form>
 
-				<h:panelGrid columns="3" cellpadding="5" cellspacing="5" width="60%"
-					style="text-align: right; margin:auto;">
+				<h:panelGrid columns="3" cellpadding="10" cellspacing="10" width="40%" 
+					style="text-align: right; margin: auto; padding-bottom:10px;">
 
 					<f:facet name="header">
 						<div style="text-align: center;">
-							<h:graphicImage library="images" name="ajouter.png" width="40%" />
+							<h:graphicImage library="images" name="ajouter.png" width="30%" />
 						</div>
 					</f:facet>
 
@@ -35,32 +35,31 @@
 							Ajout d'un Compte</div>
 					</f:facet>
 
-					<div>
+					
 							
 						<p:outputLabel styleClass="text" for="soldeCompte"
 							value="solde : " />
-						<p:inputText id="soldeCompte" required="true"
-							requiredMessage="solde obligatoire !"
-							value="#{gestionCompte.compte.solde}" />
+						<p:spinner id="soldeCompte" value="#{gestionCompte.compte.solde}" suffix=" €" min="0" required="true"
+							requiredMessage="solde obligatoire !"/>
 						<h:message for="soldeCompte" styleClass="error" />
 
 
 						<p:outputLabel styleClass="text" for="typeCompte" value="type de compte : " />
-						<p:selectOneRadio  style="padding:50px;" id="typeCompte" value="#{gestionCompte.compte.typeCompte}" requiredMessage="solde obligatoire !" required="true">
-    						<f:selectItem itemValue="Epargne" itemLabel="Epargne" />
-   							<f:selectItem itemValue="Courant" itemLabel="Courant " />
-   							<f:ajax render="tauxCompte" />
-   							<f:ajax render="decouvertCompte" />
+						 <p:selectOneRadio style="display: inline-table; " id="typeCompte" value="#{gestionCompte.compte.typeCompte}" requiredMessage="solde obligatoire !" required="true">
+    							<f:selectItem itemValue="Epargne" itemLabel="Epargne" />
+   								<f:selectItem itemValue="Courant" itemLabel="Courant " />
+   								<f:ajax render="tauxCompte" />
+   								<f:ajax render="decouvertCompte" />
 						</p:selectOneRadio>
 						<h:message for="typeCompte" styleClass="error" />
 					
 						<p:outputLabel styleClass="text" for="tauxCompte" value="Taux : " />
-						<p:inputText id="tauxCompte" value="#{gestionCompte.compte.taux}" disabled="#{gestionCompte.compte.typeCompte eq 'Courant'}" />
+						<p:spinner id="tauxCompte" value="#{gestionCompte.compte.taux}" suffix=" €" min="0" disabled="#{gestionCompte.compte.typeCompte eq 'Courant'}"/>
 						<h:message  for="tauxCompte" styleClass="error" />	
-						<p:outputLabel styleClass="text" for="decouvertCompte" value="Decouvert : " />
-						<p:inputText id="decouvertCompte" value="#{gestionCompte.compte.decouvert}" disabled="#{gestionCompte.compte.typeCompte eq 'Epargne'}" />
-						<h:message  for="decouvertCompte" styleClass="error" />	
 						
+						<p:outputLabel styleClass="text" for="decouvertCompte" value="Decouvert : " />
+						<p:spinner id="decouvertCompte" value="#{gestionCompte.compte.decouvert}" suffix=" €" min="0" disabled="#{gestionCompte.compte.typeCompte eq 'Epargne'}"/>
+						<h:message  for="decouvertCompte" styleClass="error" />	
 						
 						<p:outputLabel styleClass="text" for="idCLient"
 							value="id Client : " />
@@ -74,7 +73,7 @@
 								actionListener="#{gestionCompte.ajouterCompte}" look="success"
 								style="width:100%; margin-top:10px;" />
 						</f:facet>
-					</div>
+					
 				</h:panelGrid>
 				<h:messages globalOnly="true" styleClass="error" layout="table"
 					showDetail="true" />

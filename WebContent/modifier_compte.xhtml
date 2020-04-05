@@ -38,26 +38,23 @@
 							
 						<p:outputLabel styleClass="text" for="soldeCompte"
 							value="solde : " />
-						<p:inputText id="soldeCompte" required="true"
-							requiredMessage="solde obligatoire !"
-							value="#{gestionCompte.compte.solde}" />
+							<p:spinner id="soldeCompte" value="#{gestionCompte.compte.solde}" suffix=" €" min="0" required="true"
+							requiredMessage="solde obligatoire !"/>
 						<h:message for="soldeCompte" styleClass="error" />			
 
 						<c:choose>
 							<c:when test="#{gestionCompte.compte.typeCompte == 'Epargne'}">
 								<p:outputLabel styleClass="text" for="tauxCompte"
 									value="taux : " />
-								<p:inputText id="tauxCompte" required="true"
-									requiredMessage="taux obligatoire !"
-									value="#{gestionCompte.compte.taux}" />
+									<p:spinner id="tauxCompte" value="#{gestionCompte.compte.taux}" suffix=" €" min="0" required="true"
+							requiredMessage="taux obligatoire !"/>
 								<h:message for="tauxCompte" styleClass="error" />
 							</c:when>
 							<c:otherwise>
 								<p:outputLabel styleClass="text" for="decouvertCompte"
 									value="decouvert : " />
-								<p:inputText id="decouvertCompte" required="true"
-									requiredMessage="decouvert obligatoire !"
-									value="#{gestionCompte.compte.decouvert}" />
+									<p:spinner id="decouvertCompte" value="#{gestionCompte.compte.decouvert}" suffix=" €" min="0" required="true"
+							requiredMessage="decouvert obligatoire !"/>
 								<h:message for="decouvertCompte" styleClass="error" />
 							</c:otherwise>
 						</c:choose>

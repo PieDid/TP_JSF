@@ -67,7 +67,7 @@ public class CompteDAOImpl implements ICompteDAO {
 		}
 
 		return null;
-	}
+	} // end getAllComptes()
 
 	/**
 	 * Récupère un compte à partir de son ID
@@ -119,14 +119,15 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 		return null;
-	}
+	} // end getCompteById()
 
 	/**
 	 * Ajoute un compte
 	 * @param compte
+	 * @return 
 	 */
 	@Override
-	public void ajouterCompte(Compte compte) {
+	public boolean ajouterCompte(Compte compte) {
 
 		PreparedStatement ps = null;
 		try {
@@ -150,8 +151,10 @@ public class CompteDAOImpl implements ICompteDAO {
 
 			// 3. Exécution de la requête + récup du résultat
 
-			int verifAjout = ps.executeUpdate();
+			int addResult = ps.executeUpdate();
 
+			return (addResult == 1) ? true : false;
+			
 			// renvoi du résultat
 
 		} catch (SQLException e) {
@@ -167,14 +170,17 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 
-	}
+		return false;
+		
+	} // end ajouterCompte()
 
 	/**
 	 * Modifie un compte
 	 * @param compte
+	 * @return 
 	 */
 	@Override
-	public void modifierCompte(Compte compte) {
+	public boolean modifierCompte(Compte compte) {
 
 		PreparedStatement ps = null;
 		try {
@@ -197,8 +203,10 @@ public class CompteDAOImpl implements ICompteDAO {
 
 			// 3. Exécution de la requête + récup du résultat
 
-			int verifUpdate = ps.executeUpdate();
+			int updateResult = ps.executeUpdate();
 
+			return (updateResult == 1) ? true : false;
+			
 			// renvoi du résultat
 
 		} catch (SQLException e) {
@@ -214,14 +222,17 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 
-	}
+		return false;
+		
+	} // end modifierCompte()
 
 	/**
 	 * Supprime un compte via son ID
 	 * @param pIdCompte
+	 * @return 
 	 */
 	@Override
-	public void supprimerCompteById(int pIdCompte) {
+	public boolean supprimerCompteById(int pIdCompte) {
 		PreparedStatement ps = null;
 
 		try {
@@ -229,8 +240,10 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps = this.connection.prepareStatement("DELETE FROM comptes WHERE id_compte=?");
 
 			ps.setInt(1, pIdCompte);
-			int DeleteResult = ps.executeUpdate();
+			int deleteResult = ps.executeUpdate();
 
+			return (deleteResult == 1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -244,7 +257,9 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 
-	}
+		return false;
+		
+	} // end supprimerCompteById()
 
 	/**
 	 * Récupère la liste des compte d'un client via l'ID de ce client
@@ -300,15 +315,16 @@ public class CompteDAOImpl implements ICompteDAO {
 
 		return null;
 
-	}
+	} // end getCompteByClientId()
 
 	/**
 	 * Affecte un compe à un client via leurs IDs
 	 * @param pIdCcompte
 	 * @param pIdClient
+	 * @return 
 	 */
 	@Override
-	public void affecterClient(int pIdCcompte, int pIdClient) {
+	public boolean affecterClient(int pIdCcompte, int pIdClient) {
 
 		PreparedStatement ps = null;
 
@@ -321,8 +337,10 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps.setInt(1, pIdClient);
 			ps.setInt(2, pIdCcompte);
 
-			int SetClientResult = ps.executeUpdate();
+			int setClientResult = ps.executeUpdate();
 
+			return (setClientResult == 1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -335,15 +353,18 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 
-	}
+		return false;
+		
+	} // end affecterClient()
 
 	/**
 	 * Déposer de l'argent
 	 * @param compte
 	 * @param montant
+	 * @return 
 	 */
 	@Override
-	public void deposer(Compte compte, double montant) {
+	public boolean deposer(Compte compte, double montant) {
 
 		PreparedStatement ps = null;
 
@@ -354,8 +375,10 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps.setDouble(1, (compte.getSolde() + montant));
 			ps.setInt(2, compte.getIdCompte());
 
-			int DepositResult = ps.executeUpdate();
+			int depositResult = ps.executeUpdate();
 
+			return (depositResult == 1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -368,15 +391,18 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 
-	}
+		return false;
+		
+	} // end deposer()
 
 	/**
 	 * Retirer de l'argent
 	 * @param compte
 	 * @param montant
+	 * @return 
 	 */
 	@Override
-	public void retirer(Compte compte, double montant) {
+	public boolean retirer(Compte compte, double montant) {
 		PreparedStatement ps = null;
 
 		try {
@@ -386,9 +412,10 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps.setDouble(1, (compte.getSolde() - montant));
 			ps.setInt(2, compte.getIdCompte());
 
-			int WithdrawResult = ps.executeUpdate();
-			System.out.println(WithdrawResult);
+			int withdrawResult = ps.executeUpdate();
 
+			return (withdrawResult == 1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -401,16 +428,18 @@ public class CompteDAOImpl implements ICompteDAO {
 			}
 		}
 
-	}
+		return false;
+	} // end retirer()
 
 	/**
 	 * Transferer de l'argent
 	 * @param compte
 	 * @param montant
 	 * @param compteReceveur
+	 * @return 
 	 */
 	@Override
-	public void transferer(Compte compte, double montant, Compte compteReceveur) {
+	public boolean transferer(Compte compte, double montant, Compte compteReceveur) {
 
 		PreparedStatement ps = null;
 
@@ -420,14 +449,16 @@ public class CompteDAOImpl implements ICompteDAO {
 			ps.setDouble(1, (compte.getSolde() - montant));
 			ps.setInt(2, compte.getIdCompte());
 
-			int WithdrawResult1 = ps.executeUpdate();
+			int transferResult1 = ps.executeUpdate();
 
 			ps = this.connection.prepareStatement("UPDATE comptes SET solde=? WHERE id_compte=?");
 			ps.setDouble(1, (compteReceveur.getSolde() + montant));
 			ps.setInt(2, compteReceveur.getIdCompte());
 
-			int WithdrawResult2 = ps.executeUpdate();
+			int transferResult2 = ps.executeUpdate();
 
+			return (transferResult1 == 1 && transferResult2 ==1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -439,7 +470,9 @@ public class CompteDAOImpl implements ICompteDAO {
 				e.printStackTrace();
 			}
 		}
+		
+		return false;
 
-	}
+	} // end transferer()
 
-}
+} // end class

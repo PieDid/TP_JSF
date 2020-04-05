@@ -24,19 +24,19 @@ public interface ICompteDAO {
 	 * Ajoute un compte
 	 * @param compte
 	 */
-	public void ajouterCompte(Compte compte);
+	public boolean ajouterCompte(Compte compte);
 
 	/**
 	 * Modifie un compte
 	 * @param compte
 	 */
-	public void modifierCompte(Compte compte);
+	public boolean modifierCompte(Compte compte);
 
 	/**
 	 * Supprime un compte via son ID
 	 * @param pIdCompte
 	 */
-	public void supprimerCompteById(int pIdCompte);
+	public boolean supprimerCompteById(int pIdCompte);
 
 	/**
 	 * Récupère un compte à partir de son ID
@@ -58,21 +58,21 @@ public interface ICompteDAO {
 	 * @param pIdCcompte
 	 * @param pIdClient
 	 */
-	public void affecterClient(int pIdCcompte, int pIdClient);
+	public boolean affecterClient(int pIdCcompte, int pIdClient);
 
 	/**
 	 * Déposer de l'argent
 	 * @param compte
 	 * @param montant
 	 */
-	public void deposer(Compte compte, double montant);
+	public boolean deposer(Compte compte, double montant);
 
 	/**
 	 * Retirer de l'argent
 	 * @param compte
 	 * @param montant
 	 */
-	public void retirer(Compte compte, double montant);
+	public boolean retirer(Compte compte, double montant);
 
 	
 	/**
@@ -81,6 +81,6 @@ public interface ICompteDAO {
 	 * @param montant
 	 * @param compteReceveur
 	 */
-	public void transferer(Compte compte, double montant, Compte compteReceveur);
+	public boolean transferer(Compte compte, double montant, Compte compteReceveur);
 
 }

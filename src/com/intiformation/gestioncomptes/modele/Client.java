@@ -36,7 +36,7 @@ public class Client implements Serializable {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.telephone = telephone;
-		this.conseillerId = conseillerId;
+		this.conseillerId = idConseiller;
 	}
 
 	public Client(int idClient, String nom, String prenom, String adresse, String codePostal, String ville,
@@ -49,7 +49,7 @@ public class Client implements Serializable {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.telephone = telephone;
-		this.conseillerId = conseillerId;
+		this.conseillerId = idConseiller;
 	}
 
 	/* Getters et Setters */
@@ -115,7 +115,7 @@ public class Client implements Serializable {
 	}
 
 	public void setIdConseiller(int idConseiller) {
-		this.conseillerId = conseillerId;
+		this.conseillerId = idConseiller;
 	}
 	
 	/* Méthodes */

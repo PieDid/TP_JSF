@@ -13,26 +13,22 @@
 	
 	<ui:define name="content">
 		
-			<!-- ======================================================= -->
+	<!-- ======================================================= -->
 	<!-- =============== Affichage des messages ================ -->
 	<!-- ======================================================= -->
 	<br/>
 	<h:messages globalOnly="true" showDetail="true" infoStyle="color:green;" fatalStyle="color:red;"/>
 	
 	<!-- =============================================================== -->
-	<!-- ======== Affichage de la liste des livres dans la bdd ========= -->
+	<!-- ======== Affichage de la liste des clients dans la bdd ========= -->
 	<!-- =============================================================== -->
 	<!-- 
 		> affichage de la liste avec le composant JSF '<h:dataTable>' :
 				-> attribut 'value' : liste a afficher
-				-> attribut 'var'   : itération courante
-				
-		> findAllLivresBdd() retourne une list<Livre>
-		> la variable book est un objet de type Livre avec les props idLivre, titre, auteur, disponible;
-		
-	 -->	
+				-> attribut 'var'   : itération courante	
+	 -->
 	 
-	<h2>Liste des livres</h2>
+	<h2>Liste des Clients</h2>
 	
 	<h:form>
 		<h:dataTable value="#{gestionClient.allClients}" var="client" border="1" width="60%">
@@ -117,7 +113,7 @@
 				</h:commandLink>
 			</h:column>
 			
-			<!-- colonne pour modifier le livre -->
+			<!-- colonne pour modifier le client -->
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Modifier" />
@@ -130,7 +126,7 @@
 				 -->
 				<h:commandLink id="update" action="updateClient" actionListener="#{gestionClient.updateClient()}" >
 					
-					<!-- passage de paramètre au composant : nom updateID / valeur = l'id du livre -->
+					<!-- passage de paramètre au composant : nom updateID / valeur = l'id du client -->
 					<f:param id="updateID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
@@ -142,7 +138,7 @@
 		
 		<br/><br/><br/>
 		<!-- ========================================================== -->
-		<!-- ============= Bouton pour ajouter un livre =============== -->
+		<!-- ============= Bouton pour ajouter un client =============== -->
 		<!-- ========================================================== -->
 		<!-- 
 			> attributs de h:commandeButton:

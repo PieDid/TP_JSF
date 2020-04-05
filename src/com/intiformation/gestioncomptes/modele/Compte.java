@@ -32,7 +32,7 @@ public class Compte implements Serializable {
 		this.typeCompte = typeCompte;
 	}
 
-	public Compte(int idCompte, double solde, String typeCompte, double decouvert, double taux, int clientID) {
+	public Compte(int idCompte, double solde, String typeCompte, double decouvert, double taux, int clientId) {
 		super();
 		this.idCompte = idCompte;
 		this.solde = solde;
@@ -76,7 +76,7 @@ public class Compte implements Serializable {
 	public int getClientId() {
 		return clientId;
 	}
-	public void setClientID(int clientId) {
+	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
 

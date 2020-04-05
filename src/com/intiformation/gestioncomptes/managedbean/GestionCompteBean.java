@@ -92,8 +92,13 @@ public class GestionCompteBean implements Serializable {
 
 	public void initialiserCompte(ActionEvent event) {
 		
+		Compte nouveauCompte = new Compte();
+		
+		// Par défaut, le compte est de type epargne (car dans ajouter_compte, le radiobutton activ" par défaut est épargne)
+		nouveauCompte.setTypeCompte("Epargne");
+		
 		//affectation d'un objet compte vide à la propriété 'Compte'
-		setCompte(new Compte());
+		setCompte(nouveauCompte);
 		
 	} // end initialiserCompte()
 	

@@ -20,7 +20,7 @@
 
 			<h:form>
 
-				<h:panelGrid columns="3" cellpadding="1" cellspacing="2" width="30%"
+				<h:panelGrid columns="3" cellpadding="5" cellspacing="5" width="60%"
 					style="text-align: right; margin:auto;">
 
 					<f:facet name="header">
@@ -43,51 +43,25 @@
 							requiredMessage="solde obligatoire !"
 							value="#{gestionCompte.compte.solde}" />
 						<h:message for="soldeCompte" styleClass="error" />
-						
-						<p:outputLabel styleClass="text" for="typeCompte"
-							value="type de compte : " />
-						<p:inputText id="typeCompte" required="true"
-							requiredMessage="solde obligatoire !"
-							value="#{gestionCompte.compte.typeCompte}" />
-						<h:message for="typeCompte" styleClass="error" />				
-		
-						
-						<p:outputLabel styleClass="text" for="tauxCompte"
-									value="taux : " />
-						<p:inputText id="tauxCompte" required="true"
-									requiredMessage="taux obligatoire !"
-									value="#{gestionCompte.compte.taux}" />
-						<h:message for="tauxCompte" styleClass="error" />
-
-						<p:outputLabel styleClass="text" for="decouvertCompte"
-									value="decouvert : " />
-						<p:inputText id="decouvertCompte" required="true"
-									requiredMessage="decouvert obligatoire !"
-									value="#{gestionCompte.compte.decouvert}" />
-						<h:message for="decouvertCompte" styleClass="error" />
-						
-						<!--  
-						<c:choose>
-							<c:when test="#{gestionCompte.compte.typeCompte == 'Epargne'}">
-								<p:outputLabel styleClass="text" for="tauxCompte"
-									value="taux : " />
-								<p:inputText id="tauxCompte" required="true"
-									requiredMessage="taux obligatoire !"
-									value="#{gestionCompte.compte.taux}" />
-								<h:message for="tauxCompte" styleClass="error" />
-							</c:when>
-							<c:otherwise>
-								<p:outputLabel styleClass="text" for="decouvertCompte"
-									value="decouvert : " />
-								<p:inputText id="decouvertCompte" required="true"
-									requiredMessage="decouvert obligatoire !"
-									value="#{gestionCompte.compte.decouvert}" />
-								<h:message for="decouvertCompte" styleClass="error" />
-							</c:otherwise>
-						</c:choose>
-						-->
 
 
+						<p:outputLabel styleClass="text" for="typeCompte" value="type de compte : " />
+						<p:selectOneRadio  style="padding:50px;" id="typeCompte" value="#{gestionCompte.compte.typeCompte}" requiredMessage="solde obligatoire !" required="true">
+    						<f:selectItem itemValue="Epargne" itemLabel="Epargne" />
+   							<f:selectItem itemValue="Courant" itemLabel="Courant " />
+   							<f:ajax render="tauxCompte" />
+   							<f:ajax render="decouvertCompte" />
+						</p:selectOneRadio>
+						<h:message for="typeCompte" styleClass="error" />
+					
+						<p:outputLabel styleClass="text" for="tauxCompte" value="Taux : " />
+						<p:inputText id="tauxCompte" value="#{gestionCompte.compte.taux}" disabled="#{gestionCompte.compte.typeCompte eq 'Courant'}" />
+						<h:message  for="tauxCompte" styleClass="error" />	
+						<p:outputLabel styleClass="text" for="decouvertCompte" value="Decouvert : " />
+						<p:inputText id="decouvertCompte" value="#{gestionCompte.compte.decouvert}" disabled="#{gestionCompte.compte.typeCompte eq 'Epargne'}" />
+						<h:message  for="decouvertCompte" styleClass="error" />	
+						
+						
 						<p:outputLabel styleClass="text" for="idCLient"
 							value="id Client : " />
 						<p:inputText id="idCLient" required="true"

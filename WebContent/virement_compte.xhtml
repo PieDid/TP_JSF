@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+	<title>Page de virement</title>
+</h:head> 
+<body> 
+
+<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+				<h:panelGrid columns="3" cellpadding="1" cellspacing="2" width="30%"
+					style="text-align: right; margin:auto;">
+
+					<f:facet name="header">
+						<div style="text-align: center;">
+							<h:graphicImage library="images" name="depot.jpg" width="40%" />
+						</div>
+					</f:facet>
+
+					<f:facet name="header">
+						<div
+							style="text-align: center; margin-bottom: 10px; font-size: 30px; font-weight: bold; color: skyblue;">
+							Modification d'un Compte</div>
+					</f:facet>
+
+				<div>
+							
+						<p:outputLabel styleClass="text" for="montantVirement" value="Montant du virement (€) : " />
+						<p:inputText id="montantVirement" required="true"
+							requiredMessage="montant obligatoire !"
+							value="#{gestionCompte.montant}" />
+						<h:message for="montantVirement" styleClass="error" />	
+
+						<p:outputLabel styleClass="text" for="compteReceveur" value="ID du compte receveur : " />
+						<p:inputText id="compteReceveur" required="true"
+							requiredMessage="ID du compte receveur obligatoire !"
+							value="#{gestionCompte.idcompteReceveur}" />
+						<h:message for="compteReceveur" styleClass="error" />	
+
+						<f:facet name="footer">
+							<b:commandButton value="Effectuer le virement" action="listeCompte"
+								actionListener="#{gestionCompte.virement}" look="success"
+								style="width:100%; margin-top:10px;" />
+						</f:facet>
+				</div>
+				</h:panelGrid>
+				<h:messages globalOnly="true" styleClass="error" layout="table"
+					showDetail="true" />
+			</h:form>
+
+
+		</ui:define>
+
+	</ui:composition>
+
+</body> 
+</html>

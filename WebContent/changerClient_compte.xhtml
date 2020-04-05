@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<title>Page de modification du client du compte</title>
+
+</h:head>
+<body>
+
+	<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="content">
+
+
+
+			<h:form>
+
+				<h:panelGrid columns="3" cellpadding="1" cellspacing="2" width="30%"
+					style="text-align: right; margin:auto;">
+
+					<f:facet name="header">
+						<div style="text-align: center;">
+							<h:graphicImage library="images" name="changerClient.png" width="40%" />
+						</div>
+					</f:facet>
+
+					<f:facet name="header">
+						<div
+							style="text-align: center; margin-bottom: 10px; font-size: 30px; font-weight: bold; color: skyblue;">
+							Modification du client du Compte</div>
+					</f:facet>
+
+					<div>
+
+	
+						<p:outputLabel styleClass="text" for="idCLient"
+							value="id Client : " />
+						<p:inputText id="idCLient" required="true"
+							requiredMessage="Id du client obligatoire !"
+							value="#{gestionCompte.compte.clientId}" />
+						<h:message for="idCLient" styleClass="error" />
+
+						<f:facet name="footer">
+							<b:commandButton value="Modifier le client" action="listeCompte"
+								actionListener="#{gestionCompte.changerClientCompte}" look="success"
+								style="width:100%; margin-top:10px;" />
+						</f:facet>
+					</div>
+				</h:panelGrid>
+				<h:messages globalOnly="true" styleClass="error" layout="table"
+					showDetail="true" />
+			</h:form>
+
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

@@ -20,12 +20,18 @@ public class GestionCompteBean implements Serializable {
 
 	/* _____________________ props __________________________ */
 
-	// -> liste des comptes pour alimenter la table la page accueil_ceomptes.xhtml
+	// -> liste des comptes pour alimenter la table la page accueil_comptes.xhtml
 	List<Compte> listeCompteBDD;
 
 	// -> prop compte pour l'ajout et l'édition
 	private Compte compte;
 
+	// -> prop montant pour le dépot, retrait , virement
+	private double montant;
+
+	// -> prop id compteReceveur pour le virement
+	private int idcompteReceveur;
+	
 	// -> dao du compte
 	ICompteDAO compteDAO;
 
@@ -48,7 +54,6 @@ public class GestionCompteBean implements Serializable {
 		return compteDAO.getAllComptes();
 	} // end getAllComptes()
 
-	
 	public void supprimerCompte(ActionEvent event) {
 
 		UIParameter cp = (UIParameter) event.getComponent().findComponent("deleteID");
@@ -81,6 +86,9 @@ public class GestionCompteBean implements Serializable {
 
 		// 1. récup du param passé dans le composant au click du lien 'modifier'
 		UIParameter cp = (UIParameter) event.getComponent().findComponent("choixID");
+		if (cp == null) {
+			cp = (UIParameter) event.getComponent().findComponent("changerClientID");
+		}
 
 		// 2. récup de la valeur du paramètre => l'id du livre à editer
 		int compteID = (int) cp.getValue();
@@ -91,73 +99,183 @@ public class GestionCompteBean implements Serializable {
 	} // end choisirCompte()
 
 	public void initialiserCompte(ActionEvent event) {
-		
+
 		Compte nouveauCompte = new Compte();
-		
-		// Par défaut, le compte est de type epargne (car dans ajouter_compte, le radiobutton activ" par défaut est épargne)
+
+		// Par défaut, le compte est de type epargne (car dans ajouter_compte, le
+		// radiobutton activ" par défaut est épargne)
 		nouveauCompte.setTypeCompte("Epargne");
-		
-		//affectation d'un objet compte vide à la propriété 'Compte'
+
+		// affectation d'un objet compte vide à la propriété 'Compte'
 		setCompte(nouveauCompte);
-		
+
 	} // end initialiserCompte()
-	
-	
+
 	public void modifierCompte(ActionEvent event) {
 		FacesContext contextJsf = FacesContext.getCurrentInstance();
-		
-		if (compteDAO.modifierCompte(compte)) {
-			
-			// Modification OK
-			
-			// Message vers la Vue
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-													"Modification réussie",
-													" - Les informations du compte sont à jour.");
-			
-			contextJsf.addMessage(null, message);
-			
-		}else {
-			
-				// Modification NOT OK
-			
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, 
-													"Modification échouée",
-													" - Les informations du compte n'ont pas été modifiées.");
 
-			contextJsf.addMessage(null, message);			
-			
+		if (compteDAO.modifierCompte(compte)) {
+
+			// Modification OK
+
+			// Message vers la Vue
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification réussie",
+					" - Les informations du compte sont à jour.");
+
+			contextJsf.addMessage(null, message);
+
+		} else {
+
+			// Modification NOT OK
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Modification échouée",
+					" - Les informations du compte n'ont pas été modifiées.");
+
+			contextJsf.addMessage(null, message);
+
 		}
 	} // end modifierCompte
-	
+
 	public void ajouterCompte(ActionEvent event) {
 		FacesContext contextJsf = FacesContext.getCurrentInstance();
-		
-		if (compteDAO.ajouterCompte(compte)) {
-			
-			// Ajout OK
-			
-			// Message vers la Vue
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-													"Ajout du compte réussi",
-													" - Le compte a été ajouté.");
-			
-			contextJsf.addMessage(null, message);
-			
-		}else {
-			
-				// Modification NOT OK
-			
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, 
-													"Ajout du compte échoué",
-													" - Le compte n'a pas été enregistré.");
 
-			contextJsf.addMessage(null, message);			
-			
+		if (compteDAO.ajouterCompte(compte)) {
+
+			// Ajout OK
+
+			// Message vers la Vue
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ajout du compte réussi",
+					" - Le compte a été ajouté.");
+
+			contextJsf.addMessage(null, message);
+
+		} else {
+
+			// Modification NOT OK
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ajout du compte échoué",
+					" - Le compte n'a pas été enregistré.");
+
+			contextJsf.addMessage(null, message);
+
 		}
 	} // end ajouterCompte
+
+	public void changerClientCompte(ActionEvent event) {
+
+		FacesContext contextJsf = FacesContext.getCurrentInstance();
+		if (compteDAO.affecterClient(compte.getIdCompte(), compte.getClientId())) {
+
+			// Ajout OK
+
+			// Message vers la Vue
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "L'affectation du client réussi",
+					" - Le client a bien été modifié.");
+
+			contextJsf.addMessage(null, message);
+
+		} else {
+
+			// Modification NOT OK
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "L'affectation du client échoué",
+					" - Le client n'a pas pu être modifié.");
+
+			contextJsf.addMessage(null, message);
+
+		}
+
+	} // end changerClientCompte()
+
+	public void deposer(ActionEvent event) {
+		FacesContext contextJsf = FacesContext.getCurrentInstance();
+		if (compteDAO.deposer(compte, montant)) {
+
+			// Ajout OK
+
+			// Message vers la Vue
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dépot réussi",
+					" - le solde du compte a été modifié.");
+
+			contextJsf.addMessage(null, message);
+
+		} else {
+
+			// Modification NOT OK
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Dépot échoué",
+					" -le solde du compte est resté intact");
+			contextJsf.addMessage(null, message);
+
+		}
+	}
+
+	public void retirer(ActionEvent event) {
+		FacesContext contextJsf = FacesContext.getCurrentInstance();
+
+		if ((compte.getSolde() - montant) < -compte.getDecouvert()) {
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Retrait annulé",
+					" - le solde du compte après opération aurait excédé votre découvert autorisé.");
+			contextJsf.addMessage(null, message);
+		} else {
+			if (compteDAO.retirer(compte, montant)) {
+
+				// Ajout OK
+
+				// Message vers la Vue
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Retrait réussi",
+						" - le solde du compte a été modifié.");
+
+				contextJsf.addMessage(null, message);
+
+			} else {
+
+				// Modification NOT OK
+
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Retrait échoué",
+						" -le solde du compte est resté intact");
+				contextJsf.addMessage(null, message);
+
+			}
+		}
+	}
 	
-	
+	public void virement(ActionEvent event) {
+		
+		FacesContext contextJsf = FacesContext.getCurrentInstance();
+
+		Compte compteReceveur = compteDAO.getCompteById(idcompteReceveur);
+		
+		if ((compte.getSolde() - montant) < -compte.getDecouvert()) {
+
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Virement annulé",
+					" - le solde du compte après opération aurait excédé votre découvert autorisé.");
+			contextJsf.addMessage(null, message);
+		} else {
+			if (compteDAO.transferer(compte, montant, compteReceveur)) {
+
+				// Ajout OK
+
+				// Message vers la Vue
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Virement réussi",
+						" - les soldes des comptes ont été modifiés.");
+
+				contextJsf.addMessage(null, message);
+
+			} else {
+
+				// Modification NOT OK
+
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Virement échoué",
+						" -les soldes des comptes sont restés intacts");
+				contextJsf.addMessage(null, message);
+
+			}
+		}
+		
+	}
+
 	/* ________________ getters/setters _____________________ */
 
 	/**
@@ -173,5 +291,35 @@ public class GestionCompteBean implements Serializable {
 	public void setCompte(Compte compte) {
 		this.compte = compte;
 	}
+
+	/**
+	 * @return the montant
+	 */
+	public double getMontant() {
+		return montant;
+	}
+
+	/**
+	 * @param montant the montant to set
+	 */
+	public void setMontant(double montant) {
+		this.montant = montant;
+	}
+
+	/**
+	 * @return the idcompteReceveur
+	 */
+	public int getIdcompteReceveur() {
+		return idcompteReceveur;
+	}
+
+	/**
+	 * @param idcompteReceveur the idcompteReceveur to set
+	 */
+	public void setIdcompteReceveur(int idcompteReceveur) {
+		this.idcompteReceveur = idcompteReceveur;
+	}
+	
+	
 
 }

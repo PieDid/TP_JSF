@@ -111,7 +111,7 @@
 			<!-- 5.1. Page de départ -->
 			<from-view-id>/accueil_compte.xhtml</from-view-id>
 		
-			<!-- 5.2. Cas de navigation : accueil-client.xhtml vers ajouter_compte.xhtml (Ajout) -->
+			<!-- 5.2. Cas de navigation : accueil_compte.xhtml vers ajouter_compte.xhtml (Ajout) -->
 			<navigation-case>
 				<!-- 5.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
 				<from-outcome>addCompte</from-outcome>
@@ -119,7 +119,7 @@
 				<to-view-id>/ajouter_compte.xhtml</to-view-id>
 			</navigation-case>
 			
-			<!-- 5.3. Cas de navigation : accueil.xhtml vers modifier_compte.xhtml (Modification) -->
+			<!-- 5.3. Cas de navigation : accueil_compte.xhtml vers modifier_compte.xhtml (Modification) -->
 			<navigation-case>
 				<!-- 5.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
 				<from-outcome>updateCompte</from-outcome>
@@ -127,7 +127,39 @@
 				<to-view-id>/modifier_compte.xhtml</to-view-id>
 			</navigation-case>
 			
-			<!-- 5.4. Cas de navigation : accueil-clien.xhtml vers accueil.xhtml (Suppression) -->
+			<!-- 5.4. Cas de navigation : accueil_compte.xhtml vers changerClient_compte.xhtml (Changement de client) -->
+			<navigation-case>
+				<!-- 5.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>changeClientCompte</from-outcome>
+				<!-- 5.3.2. Page de destination -->
+				<to-view-id>/changerClient_compte.xhtml</to-view-id>
+			</navigation-case>
+					
+			<!-- 5.5. Cas de navigation : accueil_compte.xhtml vers depot_compte.xhtml (depot) -->
+			<navigation-case>
+				<!-- 5.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>depotCompte</from-outcome>
+				<!-- 5.3.2. Page de destination -->
+				<to-view-id>/depot_compte.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 5.6. Cas de navigation : accueil_compte.xhtml vers retrait_compte.xhtml (retrait) -->
+			<navigation-case>
+				<!-- 5.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>retraitCompte</from-outcome>
+				<!-- 5.3.2. Page de destination -->
+				<to-view-id>/retrait_compte.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 5.7. Cas de navigation : accueil_compte.xhtml vers virement_compte.xhtml (virement) -->
+			<navigation-case>
+				<!-- 5.3.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
+				<from-outcome>virementCompte</from-outcome>
+				<!-- 5.3.2. Page de destination -->
+				<to-view-id>/virement_compte.xhtml</to-view-id>
+			</navigation-case>
+			
+			<!-- 5.8. Cas de navigation : accueil_compte.xhtml vers accueil.xhtml (Retour à l'acceuil) -->
 			<navigation-case>
 				<!-- 5.4.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
 				<from-outcome>accueil</from-outcome>
@@ -135,7 +167,7 @@
 				<to-view-id>/accueil.xhtml</to-view-id>
 			</navigation-case>
 			
-			<!-- 5.5. Cas de navigation : accueil-clien.xhtml vers accueil_compte.xhtml (Suppression) -->
+			<!-- 5.8. Cas de navigation : accueil_compte.xhtml vers accueil_compte.xhtml (Suppression) -->
 			<navigation-case>
 				<!-- 5.4.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton) -->
 				<from-outcome>listeCompte</from-outcome>
@@ -162,17 +194,81 @@
 		</navigation-rule>
 		
 		
-		<!-- 7. Règle de navigation pour la page 'ajouter_client.xhtml' -->
+		<!-- 7. Règle de navigation pour la page 'ajouter_compte.xhtml' -->
 		<navigation-rule>
 		
 			<!-- 7.1. Page de départ -->
 			<from-view-id>/ajouter_compte.xhtml</from-view-id>
 			
-			<!-- 7.2. Cas de navigation : ajouter_client.xhtml vers accueil.xhtml (Modification) -->
+			<!-- 7.2. Cas de navigation : ajouter_client.xhtml vers accueil.xhtml -->
 			<navigation-case>
 				<!-- 7.2.1. Clé d'outcome (valeur de l'attribut 'action' de h:commandButton de ajouter_compte.xhtml) -->
 				<from-outcome>listeCompte</from-outcome>
 				<!-- 7.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		<!-- 8. Règle de navigation pour la page 'changerClient_compte.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 8.1. Page de départ -->
+			<from-view-id>/changerClient_compte.xhtml</from-view-id>
+			
+			<!-- 8.2. Cas de navigation : changerClient_compte.xhtml vers accueil_compte.xhtml -->
+			<navigation-case>
+				<!-- 8.2.1. Clé d'outcome -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 8.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		<!-- 9. Règle de navigation pour la page 'depot_compte.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 9.1. Page de départ -->
+			<from-view-id>/depot_compte.xhtml</from-view-id>
+			
+			<!-- 9.2. Cas de navigation : depot_compte.xhtml vers accueil_compte.xhtml -->
+			<navigation-case>
+				<!-- 9.2.1. Clé d'outcome -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 9.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		<!-- 10. Règle de navigation pour la page 'retrait_compte.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 10.1. Page de départ -->
+			<from-view-id>/retrait_compte.xhtml</from-view-id>
+			
+			<!-- 10.2. Cas de navigation : retrait_compte.xhtml vers accueil_compte.xhtml -->
+			<navigation-case>
+				<!-- 10.2.1. Clé d'outcome -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 10.2.2. Page de destination -->
+				<to-view-id>/accueil_compte.xhtml</to-view-id>
+			</navigation-case>			
+		
+		</navigation-rule>
+		
+		<!-- 11. Règle de navigation pour la page 'virement_compte.xhtml' -->
+		<navigation-rule>
+		
+			<!-- 11.1. Page de départ -->
+			<from-view-id>/virement_compte.xhtml</from-view-id>
+			
+			<!-- 11.2. Cas de navigation : virement_compte.xhtml vers accueil_compte.xhtml -->
+			<navigation-case>
+				<!-- 11.2.1. Clé d'outcome -->
+				<from-outcome>listeCompte</from-outcome>
+				<!-- 11.2.2. Page de destination -->
 				<to-view-id>/accueil_compte.xhtml</to-view-id>
 			</navigation-case>			
 		

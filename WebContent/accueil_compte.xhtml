@@ -25,7 +25,7 @@
 
 			<h2>Liste des Comptes</h2>
 
-			<h:form>
+			<h:form style="text-align: center;">
 				<h:dataTable value="#{gestionCompte.allComptes}" var="compte"
 					border="1" width="60%">
 
@@ -92,7 +92,7 @@
 							<f:param id="deleteID" name="id" value="#{compte.idCompte}" />
 
 							<!-- label du lien -->
-							<h:outputText value="Supprimer" />
+							<h:graphicImage library="images" name="supprimer.png" width="25px" />
 						</h:commandLink>
 					</h:column>
 
@@ -112,11 +112,62 @@
 
 							<!-- passage de paramètre au composant : nom updateID / valeur = l'id du client -->
 							<f:param id="choixID" name="id" value="#{compte.idCompte}" />
-
+			
 							<!-- label du lien -->
-							<h:outputText value="Modifier" />
+							<h:graphicImage library="images" name="modifier.png" width="25px" />
 						</h:commandLink>
 					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Modifier le client" />
+						</f:facet>
+						
+						<h:commandLink action="changeClientCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="changerClientID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="changerClient.png" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Dépot" />
+						</f:facet>
+						
+						<h:commandLink action="depotCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="depotID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="depot.jpg" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Retrait" />
+						</f:facet>
+						
+						<h:commandLink action="retraitCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="retraitID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="retrait.jpg" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Virement" />
+						</f:facet>
+						
+						<h:commandLink action="virementCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="virementID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="virement.png" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					
+					
 				</h:dataTable>
 
 

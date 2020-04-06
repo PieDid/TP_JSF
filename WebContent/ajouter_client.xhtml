@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<title>Ajout d'un nouveau client</title>
+
+</h:head>
+<body>
+
+	<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="content">
+
+	<h:form>
+	
+				<h:panelGrid columns="3" cellpadding="10" cellspacing="10" width="40%" 
+					style="text-align: right; margin: auto; padding-bottom:10px;">
+		
+					<f:facet name="header">
+						<div style="text-align: center;">
+							<h:graphicImage library="images" name="ajouter.png" width="30%" />
+						</div>
+					</f:facet>
+
+					<f:facet name="header">
+						<div
+							style="text-align: center; margin-bottom: 10px; font-size: 30px; font-weight: bold; color: hotpink;">
+							Ajout d'un Nouveau Client</div>
+					</f:facet>
+			
+			<h:outputLabel styleClass="text" for="nomClient" value="Nom de famille : "/>
+			<h:inputText id="nomClient" required="true" requiredMessage="Veuillez entrer un nom." value="#{gestionClient.client.nom}" />
+			<h:message for="nomClient" styleClass="error" />
+			
+			<h:outputLabel styleClass="text" for="prenomClient" value="Prénom : "/>
+			<h:inputText id="prenomClient" required="true" requiredMessage="Veuillez entrer un prénom." value="#{gestionClient.client.prenom}" />
+			<h:message for="prenomClient" styleClass="error" />
+			
+			<h:outputLabel styleClass="text" for="adresseClient" value="Adresse : "/>
+			<h:inputText id="adresseClient" required="true" requiredMessage="Veuillez entrer un adresse." value="#{gestionClient.client.adresse}" />
+			<h:message for="adresseClient" styleClass="error" />
+			
+			<h:outputLabel styleClass="text" for="cpClient" value="Code Postal : "/>
+			<h:inputText id="cpClient" required="true" requiredMessage="Veuillez entrer un code postal." value="#{gestionClient.client.codePostal}" />
+			<h:message for="cpClient" styleClass="error" />
+			
+			<h:outputLabel styleClass="text" for="villeClient" value="Ville : "/>
+			<h:inputText id="villeClient" required="true" requiredMessage="Veuillez entrer un ville." value="#{gestionClient.client.ville}" />
+			<h:message for="villeClient" styleClass="error" />
+			
+			<h:outputLabel styleClass="text" for="telephoneClient" value="Téléphone : "/>
+			<h:inputText id="telephoneClient" required="true" requiredMessage="Veuillez entrer un nom." value="#{gestionClient.client.telephone}" />
+			<h:message for="telephoneClient" styleClass="error" />
+		
+			<f:facet name="footer">
+				<h:commandButton action="listeClient" 
+								 actionListener="#{gestionClient.addClient}"
+								 value="Ajouter" />
+			</f:facet>
+		
+		</h:panelGrid>
+	
+	</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body> 
+</html>

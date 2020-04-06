@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<title>Page d'accueil</title>
@@ -12,7 +13,14 @@
 	<ui:composition template="/templates/layout.xhtml">
 	
 	<ui:define name="content">
-			NOUVEAU CONTENU PRINCIPAL DEFINI DANS HOME.XHTML !!!!!
+	<div style="width:95%; background-color:red; margin:auto; text-align : center;">
+			<b:jumbotron>
+  				<h1>Bienvenue #{authentificationBean.conseillerSession.nom.toUpperCase()} #{authentificationBean.conseillerSession.prenom} ! </h1>
+ 				 <p>Vous pouvez en cliquant sur les boutons suivant gerer les comptes et les clients. Vous pouvez également le faire à l'aide de la barre de navigation.</p>
+ 				 <p style="display: inline;" ><a class="btn btn-info btn-lg" href="accueil_client.xhtml">Gerer les clients</a></p>
+ 				 <p style="display: inline;"><a class="btn btn-info btn-lg" href = "accueil_compte.xhtml">Gerer les comptes</a></p>
+			</b:jumbotron>
+			</div>
 		</ui:define>
 	</ui:composition>
 

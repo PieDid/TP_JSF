@@ -103,4 +103,56 @@ public class ConseillerDAOImpl implements IConseillerDAO{
 		return null;
 	}
 
+	
+	public Conseiller getConseillerbyMail(String pMail) {
+		PreparedStatement ps = null;
+		ResultSet resultatRequete = null;
+
+		try {
+
+			// préparation de la requete
+			ps = this.connection.prepareStatement("SELECT * FROM conseillers WHERE mail=?");
+
+			ps.setString(1, pMail);
+
+			resultatRequete = ps.executeQuery();
+
+			Conseiller conseiller = null;
+
+			// résultat de la requete
+			resultatRequete.next();
+
+			int id_conseiller = resultatRequete.getInt(1);
+			String nom = resultatRequete.getString(2);
+			String prenom = resultatRequete.getString(3);
+			String mail = resultatRequete.getString(4);
+			String mdp = resultatRequete.getString(5);
+
+			// on crée un nouveau conseiller avec les données receuillies
+			conseiller = new Conseiller(id_conseiller, nom, prenom, mail, mdp);
+
+			// que l'on retourne
+			return conseiller;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			//Fermeture des ressources (Connection, Statement, ResultSet)
+			try {
+				if (ps != null)
+					ps.close();
+				if (resultatRequete != null)
+					resultatRequete.close();
+			} catch (SQLException e) {
+				System.out.println(
+						"DAO :: ConseillerDAOIpml :: ... Erreur lors de l'exécution de la requete getConseillerByMail() de la DAO ...");
+				e.printStackTrace();
+			}
+		}
+
+
+		return null;
+	}
+
 }

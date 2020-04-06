@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.intiformation.gestioncomptes.dao.ConseillerDAOImpl;
 import com.intiformation.gestioncomptes.dao.IConseillerDAO;
+import com.intiformation.gestioncomptes.modele.Conseiller;
 
 @ManagedBean(name = "authentificationBean")
 @SessionScoped
@@ -21,7 +22,7 @@ public class AuthentificationBean implements Serializable {
 	private String login;
 	private String password;
 	private String idConseiller;
-
+	private Conseiller conseillerSession;
 	// la DAO du conseiller
 	public IConseillerDAO conseillerDAO;
 
@@ -51,9 +52,11 @@ public class AuthentificationBean implements Serializable {
 
 			// ------------------- l'utilisateur existe ---------------------//
 
+			conseillerSession = conseillerDAO.getConseillerbyMail(login);
+			
 			/* création de la session pour l'utilisateur => création d'un id de session */
 			HttpSession session = (HttpSession) contextJSF.getExternalContext().getSession(true);
-
+			
 			/* sauvegarde du login dans la session */
 			session.setAttribute("user_login", login);
 			
@@ -144,6 +147,20 @@ public class AuthentificationBean implements Serializable {
 	 */
 	public void setIdConseiller(String idConseiller) {
 		this.idConseiller = idConseiller;
+	}
+
+	/**
+	 * @return the conseillerSession
+	 */
+	public Conseiller getConseillerSession() {
+		return conseillerSession;
+	}
+
+	/**
+	 * @param conseillerSession the conseillerSession to set
+	 */
+	public void setConseillerSession(Conseiller conseillerSession) {
+		this.conseillerSession = conseillerSession;
 	}
 
 	

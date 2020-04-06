@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:b="http://bootsfaces.net/ui"> 
 
 <h:head>
 	<title>Page de gestion des clients</title>
@@ -153,9 +155,9 @@
 				   pour pouvoir récupérer les valeurs du formulaire d'ajout. 
 				-> naviguer vers le formulaire d'ajout de la page ajouter_livre.xhtml	
 		 -->
-		
-		<h:commandButton action="addClient" actionListener="#{gestionClient.addClient()}" value="Ajouter un nouveau client" />
-		
+		<div style = "text-align: center;">
+		<h:commandButton class="btn btn-success btn-lg" action="addClient" actionListener="#{gestionClient.addClient()}" value="Ajouter un nouveau client" />
+		</div>
 	</h:form>	
 		
 		</ui:define>

@@ -20,6 +20,8 @@ public interface ICompteDAO {
 	 */
 	public List<Compte> getAllComptes();
 	
+	public List<Compte> getAllCompteByIdConseiller(int pIdConseiller);
+	
 	/**
 	 * Ajoute un compte
 	 * @param compte

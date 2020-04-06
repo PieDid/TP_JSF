@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
 	<title>Page de gestion des comptes</title>
@@ -26,9 +27,188 @@
 				-> attribut 'var'   : itération courante	
 	 -->
 
-			<h2>Liste des Comptes</h2>
+			<h2>Liste des Comptes de vos clients</h2>
 
 			<h:form style="text-align: left;">
+				
+				<h:dataTable class="table table-striped" value="#{gestionCompte.getComptesConseiller(authentificationBean.conseillerSession.idConseiller)}" var="compte"
+					 width="100%">
+				
+					<!-- colonne pour afficher l'id du livre : nom de la colonne + données -->
+					<h:column>
+						<!-- en-tête de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="ID Compte" />
+						</f:facet>
+						<!-- donnée de la colonne -->
+						<h:outputText value="#{compte.idCompte}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Type de Compte" />
+						</f:facet>
+						<h:outputText value="#{compte.typeCompte}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Solde (€)" />
+						</f:facet>
+						<h:outputText value="#{compte.solde}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Découvert (€)" />
+						</f:facet>
+						<h:outputText value="#{compte.decouvert}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Taux (%)" />
+						</f:facet>
+						<h:outputText value="#{compte.taux*100.0}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Client ID" />
+						</f:facet>
+						<h:outputText value="#{compte.clientId}" />
+					</h:column>
+
+					<!-- colonne pour supprimer le compte -->
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						<!-- Donnée de la colonne : lien pour la suppression -->
+						<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+						<h:commandLink id="delete" action="listeCompte"
+							actionListener="#{gestionCompte.supprimerCompte}">
+
+							<!-- passage de paramètre au composant : nom deleteID / valeur = l'id du livre -->
+							<f:param id="deleteID" name="id" value="#{compte.idCompte}" />
+
+							<!-- label du lien -->
+							<h:graphicImage library="images" name="supprimer.png" width="25px" />
+						</h:commandLink>
+					</h:column>
+
+					<!-- colonne pour modifier le compte -->
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						<!-- Donnée de la colonne : lien pour la suppression -->
+						<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+						<h:commandLink id="update" action="updateCompte"
+							actionListener="#{gestionCompte.choisirCompte}">
+
+							<!-- passage de paramètre au composant : nom updateID / valeur = l'id du client -->
+							<f:param id="choixID" name="id" value="#{compte.idCompte}" />
+			
+							<!-- label du lien -->
+							<h:graphicImage library="images" name="modifier.png" width="25px" />
+						</h:commandLink>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						
+						<h:commandLink action="changeClientCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="changerClientID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="changerClient.png" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						
+						<h:commandLink action="depotCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="depotID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="depot.jpg" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						
+						<h:commandLink action="retraitCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="retraitID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="retrait.jpg" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						
+						<h:commandLink action="virementCompte" actionListener="#{gestionCompte.choisirCompte}">
+							<f:param id="virementID" name="id" value="#{compte.idCompte}" />
+							<h:graphicImage library="images" name="virement.png" width="25px" />
+						</h:commandLink>
+						
+					</h:column>
+					
+				</h:dataTable>
+
+
+				<br />
+				
+			
+				<!-- ========================================================== -->
+				<!-- ============= Bouton pour ajouter un compte =============== -->
+				<!-- ========================================================== -->
+				<!-- 
+			> attributs de h:commandeButton:
+				- action : clé d'outcome (ref faces-config.xml)
+				- actionListener : méthode à invoquer dans le MB
+				- value : label du bouton
+			
+			> au click sur le bouton :
+				-> appel de la méthode initialiserCompte() du MB qui permet d'initialiser un objet Livre vide 
+				   pour pouvoir récupérer les valeurs du formulaire d'ajout. 
+				-> naviguer vers le formulaire d'ajout de la page ajouter_compte.xhtml	
+		 -->
+		 	<div style = "text-align: center;">
+				<h:commandButton class="btn btn-success btn-lg" action="addCompte"
+					actionListener="#{gestionCompte.initialiserCompte}"
+					value="Ajouter un nouveau compte" />
+			</div>
+			</h:form>
+			
+			
+			
+			<!-- ========================================================= -->
+			<!--  TOUS LES COMPTES -->
+			<!-- ========================================================= -->
+			
+			
+			<h2>Liste de tous les Comptes</h2>
+
+			<h:form style="text-align: left;">
+				
 				<h:dataTable class="table table-striped" value="#{gestionCompte.allComptes}" var="compte"
 					 width="100%">
 				
@@ -169,34 +349,15 @@
 						
 					</h:column>
 					
-					
 				</h:dataTable>
-
-
-				<br />
-				<br />
-				<br />
-				<!-- ========================================================== -->
-				<!-- ============= Bouton pour ajouter un compte =============== -->
-				<!-- ========================================================== -->
-				<!-- 
-			> attributs de h:commandeButton:
-				- action : clé d'outcome (ref faces-config.xml)
-				- actionListener : méthode à invoquer dans le MB
-				- value : label du bouton
-			
-			> au click sur le bouton :
-				-> appel de la méthode initialiserCompte() du MB qui permet d'initialiser un objet Livre vide 
-				   pour pouvoir récupérer les valeurs du formulaire d'ajout. 
-				-> naviguer vers le formulaire d'ajout de la page ajouter_compte.xhtml	
-		 -->
-
-				<h:commandButton action="addCompte"
+<br />
+				
+		 	<div style = "text-align: center;">
+				<h:commandButton class="btn btn-success btn-lg" action="addCompte"
 					actionListener="#{gestionCompte.initialiserCompte}"
 					value="Ajouter un nouveau compte" />
-
+			</div>
 			</h:form>
-
 			<!-- ======================================================= -->
 			<!-- =============== Affichage des messages ================ -->
 			<!-- ======================================================= -->
@@ -212,7 +373,7 @@
 		Aide
 		</div>
 		<div id="tableau-aide" style=" color:#1111111">
-		<table style="margin: auto; text-align: center; padding : auto;">
+		<table style="margin: auto; text-align: center; padding : auto; width:80%;">
 			<tr>
 			<td><h:graphicImage library="images" name="supprimer.png" width="25px" /></td>
 			<td><h:graphicImage library="images" name="modifier.png" width="25px" /></td>

@@ -69,6 +69,64 @@ public class CompteDAOImpl implements ICompteDAO {
 		return null;
 	} // end getAllComptes()
 
+	
+	public List<Compte> getAllCompteByIdConseiller(int pIdConseiller){
+		
+		PreparedStatement ps = null;
+		ResultSet resultatRequete = null;
+
+		try {
+
+			ps = this.connection.prepareStatement("SELECT * FROM bdd_gestion_comptes.comptes\r\n" + 
+					"INNER JOIN clients\r\n" + 
+					"on comptes.client_id = clients.id_client\r\n" + 
+					"WHERE conseiller_id = ?");
+			ps.setInt(1, pIdConseiller);
+			
+			resultatRequete = ps.executeQuery();
+
+			// Extraction des données
+
+			Compte compte = null;
+			List<Compte> listComptes = new ArrayList<>();
+
+			while (resultatRequete.next()) {
+
+				int id_compte = resultatRequete.getInt(1);
+				String typeCompte = resultatRequete.getString(2);
+				double solde = resultatRequete.getDouble(3);
+				double taux = resultatRequete.getDouble(4);
+				double decouvert = resultatRequete.getDouble(5);
+				int client_id = resultatRequete.getInt(6);
+
+				// 4.3. Ajout des données dans l'objet hotel
+				compte = new Compte(id_compte, solde, typeCompte, decouvert, taux, client_id);
+
+				// 4.4. Ajout de l'objet dans la liste des hotels
+				listComptes.add(compte);
+
+			} // end while
+				// 5. Renvoi de la liste des hotels
+			return listComptes;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			// 6. Fermeture des ressources (Connection, Statement, ResultSet)
+			try {
+				if (ps != null)
+					ps.close();
+				if (resultatRequete != null)
+					resultatRequete.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return null;
+	}
+	
 	/**
 	 * Récupère un compte à partir de son ID
 	 * @param pIdCompte

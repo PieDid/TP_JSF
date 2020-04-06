@@ -26,6 +26,7 @@ public class GestionCompteBean implements Serializable {
 	// -> liste des comptes pour alimenter la table la page accueil_comptes.xhtml et des clients pour ChangerClient et Ajouter
 	List<Compte> listeCompteBDD;
 	List<Client> listeClientBDD;
+	List<Compte> listeClientConseillerBDD;
 	// -> prop compte pour l'ajout et l'édition
 	private Compte compte;
 
@@ -63,6 +64,10 @@ public class GestionCompteBean implements Serializable {
 		return clientDAO.getAllClients();
 	} // end getAllComptes()
 
+	public List<Compte> getComptesConseiller(int pIdConseiller){
+		return compteDAO.getAllCompteByIdConseiller(pIdConseiller);
+	}
+	
 	public void supprimerCompte(ActionEvent event) {
 
 		UIParameter cp = (UIParameter) event.getComponent().findComponent("deleteID");

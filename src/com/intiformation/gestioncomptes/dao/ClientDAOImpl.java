@@ -73,7 +73,9 @@ public class ClientDAOImpl implements IClientDAO {
 			ps.setString(6, client.getTelephone());
 			ps.setInt(7, client.getIdConseiller());
 
-			int AddResult = ps.executeUpdate();
+			int addResult = ps.executeUpdate();
+			
+			return (addResult == 1) ? true : false;
 
 		} catch (SQLException e) {
 			System.out.println(
@@ -117,8 +119,10 @@ public class ClientDAOImpl implements IClientDAO {
 			ps.setInt(7, client.getIdConseiller());
 			ps.setInt(8, client.getIdClient());
 
-			int UpdateResult = ps.executeUpdate();
+			int updateResult = ps.executeUpdate();
 
+			return (updateResult == 1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -154,8 +158,10 @@ public class ClientDAOImpl implements IClientDAO {
 
 			ps.setInt(1, pIdClient);
 
-			int DeleteResult = ps.executeUpdate();
+			int deleteResult = ps.executeUpdate();
 
+			return (deleteResult == 1) ? true : false;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

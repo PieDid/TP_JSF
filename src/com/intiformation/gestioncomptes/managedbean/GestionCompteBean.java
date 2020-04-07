@@ -180,7 +180,7 @@ public class GestionCompteBean implements Serializable {
 		FacesContext contextJsf = FacesContext.getCurrentInstance();
 		if (compteDAO.affecterClient(compte.getIdCompte(), compte.getClientId())) {
 
-			// Ajout OK
+			// Changement OK
 
 			// Message vers la Vue
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "L'affectation du client réussi",

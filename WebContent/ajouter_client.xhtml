@@ -57,6 +57,10 @@
 			<h:outputLabel styleClass="text" for="telephoneClient" value="Téléphone : "/>
 			<h:inputText id="telephoneClient" required="true" requiredMessage="Veuillez entrer un nom." value="#{gestionClient.client.telephone}" />
 			<h:message for="telephoneClient" styleClass="error" />
+			
+			<h:outputLabel styleClass="text" for="conseillerClient" value="ID conseiller : "/>
+			<h:inputText id="conseillerClient" required="true" requiredMessage="Veuillez entrer l'id d'un conseiller." value="#{gestionClient.client.idConseiller}" />
+			<h:message for="conseillerClient" styleClass="error" />
 		
 			<f:facet name="footer">
 				<h:commandButton action="listeClient" 

@@ -74,14 +74,14 @@ public class GestionClientBean implements Serializable  {
 	}//end Add
 
 
-	public void setClient(ActionEvent event) {
+	public void initClient(ActionEvent event) {
 		
 		Client newClient = new Client();
 		
 		setClient(newClient);
 		
 		
-	}//end Set
+	}//end init
 	
 	public void deleteClientById(ActionEvent event) {
 		
@@ -150,14 +150,29 @@ public class GestionClientBean implements Serializable  {
 		}
 		
 	}//end Update
-	
-	
+
 	
 	/* Getters et Setters */
 
-	private void setClient(Client clientGet) {
-		
+	/**
+	 * @return the client
+	 */
+	public Client getClient() {
+		return client;
 	}
+
+
+	/**
+	 * @param client the client to set
+	 */
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
+	
+	
+	
+
 	
 	
 	

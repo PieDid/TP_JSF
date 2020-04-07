@@ -11,8 +11,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.intiformation.gestioncomptes.dao.ClientDAOImpl;
+import com.intiformation.gestioncomptes.dao.CompteDAOImpl;
 import com.intiformation.gestioncomptes.dao.IClientDAO;
+import com.intiformation.gestioncomptes.dao.ICompteDAO;
 import com.intiformation.gestioncomptes.modele.Client;
+import com.intiformation.gestioncomptes.modele.Compte;
 
 @ManagedBean(name="gestionClient")
 @SessionScoped
@@ -22,16 +25,21 @@ public class GestionClientBean implements Serializable  {
 	/* Propriétés */
 	
 	List<Client> listeClientBdd;
+	List<Compte> listeCompteBdd;
+	
 	private Client client;
 	IClientDAO clientDao;
+	ICompteDAO compteDao;
 	
 	/* Constructeurs */
 	
 	public GestionClientBean() {
 		
 		clientDao = new ClientDAOImpl ();
+		compteDao = new CompteDAOImpl ();
 		
 	}
+	
 	
 	
 	/* Méthodes */
@@ -110,7 +118,7 @@ public class GestionClientBean implements Serializable  {
 	
 	public void getClientById(ActionEvent event) {
 		
-		UIParameter cp = (UIParameter) event.getComponent().findComponent("getID");
+		UIParameter cp = (UIParameter) event.getComponent().findComponent("updateID");
 		
 		int IdClient = (int) cp.getValue();
 		
@@ -120,6 +128,20 @@ public class GestionClientBean implements Serializable  {
 		
 		
 	}//end Get One
+	
+	
+	public void getComptesByClientId(ActionEvent event) {
+		
+		UIParameter cp = (UIParameter) event.getComponent().findComponent("ComptesID");
+		
+		int IdClient = (int) cp.getValue();
+		
+		List<Compte> listeComptesByClient = compteDao.getCompteByClientID(IdClient);
+		
+		setListeCompteBdd(listeComptesByClient) ; 
+		
+		
+	}
 
 	
 	public void updateClient(ActionEvent event) {
@@ -167,6 +189,54 @@ public class GestionClientBean implements Serializable  {
 	 */
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+
+
+	public List<Client> getListeClientBdd() {
+		return listeClientBdd;
+	}
+
+
+
+	public void setListeClientBdd(List<Client> listeClientBdd) {
+		this.listeClientBdd = listeClientBdd;
+	}
+
+
+
+	public List<Compte> getListeCompteBdd() {
+		return listeCompteBdd;
+	}
+
+
+
+	public void setListeCompteBdd(List<Compte> listeCompteBdd) {
+		this.listeCompteBdd = listeCompteBdd;
+	}
+
+
+
+	public IClientDAO getClientDao() {
+		return clientDao;
+	}
+
+
+
+	public void setClientDao(IClientDAO clientDao) {
+		this.clientDao = clientDao;
+	}
+
+
+
+	public ICompteDAO getCompteDao() {
+		return compteDao;
+	}
+
+
+
+	public void setCompteDao(ICompteDAO compteDao) {
+		this.compteDao = compteDao;
 	}
 	
 	

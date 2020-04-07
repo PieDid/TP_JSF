@@ -24,12 +24,11 @@ public class Client implements Serializable {
 	/* Constructeurs */
 	
 	public Client() {
-		super();
+
 	}
 
 	public Client(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
 			int idConseiller) {
-		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
@@ -41,7 +40,6 @@ public class Client implements Serializable {
 
 	public Client(int idClient, String nom, String prenom, String adresse, String codePostal, String ville,
 			String telephone, int idConseiller) {
-		super();
 		this.idClient = idClient;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -52,8 +50,19 @@ public class Client implements Serializable {
 		this.conseillerId = idConseiller;
 	}
 
-	/* Getters et Setters */
 	
+	public Client(int id_client, String nom, String prenom, String adresse, String codePostal, String ville,
+			String telephone) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.telephone = telephone;
+	}
+	
+	/* Getters et Setters */
+
 	public int getIdClient() {
 		return idClient;
 	}

@@ -46,6 +46,9 @@ public interface IClientDAO {
 	 * @return
 	 */
 	public Client getClientById(int pIdClient);
+	
+
+	public List<Client> getClientsByConseiller(int pIdConseiller);
 
 	
 }

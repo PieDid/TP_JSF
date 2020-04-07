@@ -27,6 +27,8 @@ public class GestionClientBean implements Serializable  {
 	List<Client> listeClientBdd;
 	List<Compte> listeCompteBdd;
 	
+	List<Client> listeClientsByConseiller;
+	
 	private Client client;
 	IClientDAO clientDao;
 	ICompteDAO compteDao;
@@ -50,7 +52,25 @@ public class GestionClientBean implements Serializable  {
 		
 		return listeClientBdd;
 		
-	}//end Get All
+		}//end Get All
+		
+	public List<Compte> getAllComptes() {
+		
+		listeCompteBdd = compteDao.getAllComptes();
+		
+		return listeCompteBdd;
+		
+		}
+	
+	public List<Client> getClientsByConseiller (int idConseiller) {
+		
+		listeClientsByConseiller = clientDao.getClientsByConseiller(idConseiller);
+		
+		return listeClientsByConseiller;
+		
+	}
+		
+		
 	
 	
 	public void addClient(ActionEvent event) {

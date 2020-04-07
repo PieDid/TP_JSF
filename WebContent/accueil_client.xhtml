@@ -23,15 +23,155 @@
 	<br/>
 	<h:messages globalOnly="true" showDetail="true" infoStyle="color:green;" fatalStyle="color:red;"/>
 	
+	
 	<!-- =============================================================== -->
 	<!-- ======== Affichage de la liste des clients dans la bdd ========= -->
+	<!-- =============================================================== -->
+	
+	<div id="ListeClientsConseiller">
+	<h2>Liste des Clients dont vous êtes le conseiller</h2>
+	
+	<h:form style="text-align: left;">
+		<h:dataTable class="table table-striped" value="#{gestionClient.getClientsByConseiller(authentificationBean.conseillerSession.idConseiller)}" var="client" width="100%">
+			
+			<h:column >
+				<!-- en-tête de la colonne -->
+				<f:facet  name="header">
+					<h:outputText value="ID Client" />
+				</f:facet>
+				<!-- donnée de la colonne -->
+				<h:outputText value="#{client.idClient}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nom" />
+				</f:facet>
+				<h:outputText value="#{client.nom}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Prenom" />
+				</f:facet>
+				<h:outputText value="#{client.prenom}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Adresse" />
+				</f:facet>
+				<h:outputText value="#{client.adresse}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="CP" />
+				</f:facet>
+				<h:outputText value="#{client.codePostal}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ville" />
+				</f:facet>
+				<h:outputText value="#{client.ville}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Téléphone" />
+				</f:facet>
+				<h:outputText value="#{client.telephone}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID Conseiller" />
+				</f:facet>
+				<h:outputText value="#{client.idConseiller}"/>
+			</h:column>
+			
+			<!-- colonne pour supprimer le livre -->
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Supprimer" />
+				</f:facet>
+				<!-- Donnée de la colonne : lien pour la suppression -->
+				<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+				<h:commandLink id="delete" action="listeClient" actionListener="#{gestionClient.deleteClientById}" >
+					
+					<!-- passage de paramètre au composant : nom deleteID / valeur = l'id du livre -->
+					<f:param id="deleteID" name="id" value="#{client.idClient}" />
+					
+					<!-- label du lien -->
+					<h:outputText value="Supprimer" />
+				</h:commandLink>
+			</h:column>
+			
+			<!-- colonne pour modifier le client -->
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Modifier" />
+				</f:facet>
+				<!-- Donnée de la colonne : lien pour la modification -->
+				<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+				<h:commandLink id="update" action="updateClient" actionListener="#{gestionClient.getClientById}" >
+					
+					<!-- passage de paramètre au composant : nom updateID / valeur = l'id du client -->
+					<f:param id="updateID" name="id" value="#{client.idClient}" />
+					
+					<!-- label du lien -->
+					<h:outputText value="Modifier" />
+				</h:commandLink>
+			</h:column>
+		 
+		
+			<!-- colonne pour regarder les comptes appartenant au client -->
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="VoirComptes" />
+				</f:facet>
+				<!-- Donnée de la colonne : lien pour la liste des comptes -->
+				<!-- 
+						attribut du lien h:commandLink:
+							- action : clé d'outcom pour la navigation (ref faces-config.xml)
+							- actionListener : méthode à invoquer dans le managedBean
+				 -->
+				<h:commandLink id="voirComptes" action="listeClient" actionListener="#{gestionClient.getComptesByClientId}" >
+					
+					<!-- passage de paramètre au composant : nom updateID / valeur = l'id du client -->
+					<f:param id="ComptesID" name="id" value="#{client.idClient}" />
+					
+					<!-- label du lien -->
+					<h:outputText value="Voir Comptes" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		
+		</h:form>
+		</div>
+		
+		<br/><br/><br/>
+	
+	
+	<!-- =============================================================== -->
+	<!-- ======== Affichage de tous des clients dans la bdd ========= -->
 	<!-- =============================================================== -->
 	<!-- 
 		> affichage de la liste avec le composant JSF '<h:dataTable>' :
 				-> attribut 'value' : liste a afficher
 				-> attribut 'var'   : itération courante	
 	 -->
-	 
+	<div id="ListeClients">
 	<h2>Liste des Clients</h2>
 	
 	<h:form style="text-align: left;">
@@ -161,6 +301,10 @@
 			</h:column>
 		</h:dataTable>
 		
+		</h:form>
+		</div>
+		
+		
 		<br/><br/><br/>
 		<!-- ========================================================== -->
 		<!-- ============= Bouton pour ajouter un client =============== -->
@@ -179,7 +323,7 @@
 		<div style = "text-align: center;">
 		<h:commandButton class="btn btn-success btn-lg" action="addClient" actionListener="#{gestionClient.initClient}" value="Ajouter un nouveau client" />
 		</div>
-	</h:form>	
+	
 	
 	<br/><br/><br/>
 		
@@ -231,7 +375,68 @@
 		
 		</h:dataTable>
 		
+		
 		</c:if>
+		
+			<!-- ======================================================= -->
+			<!-- =============== Affichage des messages ================ -->
+			<!-- ======================================================= -->
+			<br />
+			<h:messages globalOnly="true" showDetail="true"
+				infoStyle="color:green;" fatalStyle="color:red;" />
+
+
+			<br />
+			<br />
+			<div id="aide" style="text-align: center; color: #1111111">
+				<h:graphicImage library="images" name="aide.png" width="25px" />
+				<br /> Aide
+			</div>
+			<div id="tableau-aide" style="color: #1111111; display:none;">
+				<table
+					style="margin: auto; text-align: center; padding: auto; width: 80%;">
+					<tr>
+						<td><h:graphicImage library="images" name="supprimer.png"
+								width="25px" /></td>
+						<td><h:graphicImage library="images" name="modifier.png"
+								width="25px" /></td>
+						<td><h:graphicImage library="images" name="changerClient.png"
+								width="25px" /></td>
+						<td><h:graphicImage library="images" name="depot.jpg"
+								width="25px" /></td>
+						<td><h:graphicImage library="images" name="retrait.jpg"
+								width="25px" /></td>
+						<td><h:graphicImage library="images" name="virement.png"
+								width="25px" /></td>
+					</tr>
+					<tr>
+						<td>Supprimer</td>
+						<td>Modifier</td>
+						<td>Changer de client</td>
+						<td>Dépot</td>
+						<td>Retrait</td>
+						<td>Virement</td>
+					</tr>
+				</table>
+
+			</div>
+
+		<!-- Scrips JS  -->
+		<script type="text/javascript">
+			$("#affichertouscomptes").click(function() {
+				$("#ListeComptes").slideToggle("medium");
+				$("#ListeComptesConseiller").slideToggle("medium");
+			});
+
+			$("#affichercomptesclients").click(function() {
+				$("#ListeComptes").slideToggle("medium");
+				$("#ListeComptesConseiller").slideToggle("medium");
+			});
+
+			$("#aide").click(function() {
+				$("#tableau-aide").slideToggle("fast");
+			});
+			</script>
 		
 		</ui:define>
 

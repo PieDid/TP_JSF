@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.intiformation.gestioncomptes.modele.Client;
+import com.intiformation.gestioncomptes.modele.Compte;
 
 
 public class ClientDAOImpl implements IClientDAO {
@@ -226,6 +227,60 @@ public class ClientDAOImpl implements IClientDAO {
 			} catch (SQLException e) {
 				System.out.println(
 						"DAO :: ClientDAOIpml :: ... Erreur lors de l'exécution de la requete getClientById() de la DAO ...");
+				e.printStackTrace();
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public List<Client> getClientsByConseiller(int pIdConseiller) {
+	
+		PreparedStatement ps = null;
+		ResultSet resultatRequete = null;
+
+		try {
+
+			ps = this.connection.prepareStatement("SELECT * FROM bdd_gestion_comptes.clients WHERE conseiller_id = ?");
+			ps.setInt(1, pIdConseiller);
+			
+			resultatRequete = ps.executeQuery();
+
+
+			Client client = null;
+			List<Client> listClientsByConseiller = new ArrayList<>();
+
+			while (resultatRequete.next()) {
+
+				int id_client = resultatRequete.getInt(1);
+				String nom = resultatRequete.getString(2);
+				String prenom = resultatRequete.getString(3);
+				String adresse = resultatRequete.getString(4);
+				String codePostal = resultatRequete.getString(5);
+				String ville = resultatRequete.getString(6);
+				String telephone = resultatRequete.getString(7);
+
+				client = new Client(id_client, nom, prenom, adresse, codePostal, ville, telephone);
+
+				// 4.4. Ajout de l'objet dans la liste des hotels
+				listClientsByConseiller.add(client);
+
+			} 
+			
+			return listClientsByConseiller;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			// 6. Fermeture des ressources (Connection, Statement, ResultSet)
+			try {
+				if (ps != null)
+					ps.close();
+				if (resultatRequete != null)
+					resultatRequete.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}

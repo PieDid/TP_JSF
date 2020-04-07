@@ -28,8 +28,9 @@
 	 -->
 
 			<div id="ListeComptesConseiller">
-				<h2>Liste des Comptes de vos clients</h2>
-
+				<h2>Liste des Comptes de vos clients
+				<b:button id = "affichertouscomptes" value="Afficher tous les comptes" look="warning"/>
+				</h2>
 				<h:form style="text-align: left;">
 
 					<h:dataTable class="table table-striped"
@@ -207,18 +208,20 @@
 							actionListener="#{gestionCompte.initialiserCompte}"
 							value="Ajouter un nouveau compte" />
 							
-				
+						
 					</div>
 				</h:form>
-
+				
 			</div>
 
 			<!-- ========================================================= -->
 			<!--  TOUS LES COMPTES -->
 			<!-- ========================================================= -->
 
-			<div id="ListeComptes">
-				<h2>Liste de tous les Comptes</h2>
+			<div id="ListeComptes" style="display: none;">
+				<h2>Liste de tous les Comptes
+				<b:button id = "affichercomptesclients" value="Afficher uniquement les comptes de vos clients" look="warning"/>
+				</h2>
 
 				<h:form style="text-align: left;">
 
@@ -380,7 +383,7 @@
 							value="Ajouter un nouveau compte" />
 					</div>
 				</h:form>
-
+				
 			</div>
 			<!-- ======================================================= -->
 			<!-- =============== Affichage des messages ================ -->
@@ -396,7 +399,7 @@
 				<h:graphicImage library="images" name="aide.png" width="25px" />
 				<br /> Aide
 			</div>
-			<div id="tableau-aide" style="color: #1111111">
+			<div id="tableau-aide" style="color: #1111111; display:none;">
 				<table
 					style="margin: auto; text-align: center; padding: auto; width: 80%;">
 					<tr>
@@ -425,6 +428,22 @@
 
 			</div>
 
+		<!-- Scrips JS  -->
+		<script type="text/javascript">
+			$("#affichertouscomptes").click(function() {
+				$("#ListeComptes").slideToggle("medium");
+				$("#ListeComptesConseiller").slideToggle("medium");
+			});
+
+			$("#affichercomptesclients").click(function() {
+				$("#ListeComptes").slideToggle("medium");
+				$("#ListeComptesConseiller").slideToggle("medium");
+			});
+
+			$("#aide").click(function() {
+				$("#tableau-aide").slideToggle("fast");
+			});
+			</script>
 		</ui:define>
 
 	</ui:composition>

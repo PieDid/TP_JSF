@@ -29,7 +29,9 @@
 	<!-- =============================================================== -->
 	
 	<div id="ListeClientsConseiller">
-	<h2>Liste des Clients dont vous êtes le conseiller</h2>
+	<h2>Liste des Clients dont vous êtes le conseiller   
+	<!--  <b:button id = "affichertousclients" value="Afficher tous les clients" look="warning"/> -->
+	</h2>
 	
 	<h:form style="text-align: left;">
 		<h:dataTable class="table table-striped" value="#{gestionClient.getClientsByConseiller(authentificationBean.conseillerSession.idConseiller)}" var="client" width="100%">
@@ -109,7 +111,8 @@
 					<f:param id="deleteID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
-					<h:outputText value="Supprimer" />
+				<h:graphicImage library="images" name="supprimer.png"
+									width="25px" />
 				</h:commandLink>
 			</h:column>
 			
@@ -130,7 +133,8 @@
 					<f:param id="updateID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
-					<h:outputText value="Modifier" />
+								<h:graphicImage library="images" name="modifier.png"
+									width="25px" />
 				</h:commandLink>
 			</h:column>
 		 
@@ -138,7 +142,7 @@
 			<!-- colonne pour regarder les comptes appartenant au client -->
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="VoirComptes" />
+					<h:outputText value="Voir Comptes" />
 				</f:facet>
 				<!-- Donnée de la colonne : lien pour la liste des comptes -->
 				<!-- 
@@ -152,7 +156,7 @@
 					<f:param id="ComptesID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
-					<h:outputText value="Voir Comptes" />
+					<h:graphicImage library="images" name="affichercompte2.jpg" width="25px" />
 				</h:commandLink>
 			</h:column>
 		</h:dataTable>
@@ -172,7 +176,9 @@
 				-> attribut 'var'   : itération courante	
 	 -->
 	<div id="ListeClients">
-	<h2>Liste des Clients</h2>
+	<h2>Liste de tous les Clients   
+	<!--  <b:button id = "afficherclientscomptes" value="Afficher uniquement les clients que vous gérez" look="warning"/> -->
+	</h2>
 	
 	<h:form style="text-align: left;">
 		<h:dataTable class="table table-striped" value="#{gestionClient.allClients}" var="client" width="100%">
@@ -253,7 +259,8 @@
 					<f:param id="deleteID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
-					<h:outputText value="Supprimer" />
+					<h:graphicImage library="images" name="supprimer.png"
+									width="25px" />
 				</h:commandLink>
 			</h:column>
 			
@@ -274,7 +281,8 @@
 					<f:param id="updateID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
-					<h:outputText value="Modifier" />
+					<h:graphicImage library="images" name="modifier.png"
+									width="25px" />
 				</h:commandLink>
 			</h:column>
 		 
@@ -282,7 +290,7 @@
 			<!-- colonne pour regarder les comptes appartenant au client -->
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="VoirComptes" />
+					<h:outputText value="Voir Comptes" />
 				</f:facet>
 				<!-- Donnée de la colonne : lien pour la liste des comptes -->
 				<!-- 
@@ -296,7 +304,7 @@
 					<f:param id="ComptesID" name="id" value="#{client.idClient}" />
 					
 					<!-- label du lien -->
-					<h:outputText value="Voir Comptes" />
+					<h:graphicImage library="images" name="affichercompte2.jpg" width="25px" />
 				</h:commandLink>
 			</h:column>
 		</h:dataTable>
@@ -320,7 +328,7 @@
 				   pour pouvoir récupérer les valeurs du formulaire d'ajout. 
 				-> naviguer vers le formulaire d'ajout de la page ajouter_livre.xhtml	
 		 -->
-		<div style = "text-align: center;">
+		<div id="ListeClients" style = "text-align: center;">
 		<h:commandButton class="btn btn-success btn-lg" action="addClient" actionListener="#{gestionClient.initClient}" value="Ajouter un nouveau client" />
 		</div>
 	

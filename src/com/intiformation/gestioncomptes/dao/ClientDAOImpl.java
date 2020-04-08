@@ -242,7 +242,7 @@ public class ClientDAOImpl implements IClientDAO {
 
 		try {
 
-			ps = this.connection.prepareStatement("SELECT * FROM bdd_gestion_comptes.clients WHERE conseiller_id = ?");
+			ps = this.connection.prepareStatement("SELECT * FROM bdd_gestion_comptes.clients\r\n" + "WHERE conseiller_id = ?");
 			ps.setInt(1, pIdConseiller);
 			
 			resultatRequete = ps.executeQuery();

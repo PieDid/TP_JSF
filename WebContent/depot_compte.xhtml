@@ -36,7 +36,7 @@
 
 						<p:outputLabel styleClass="text" for="montantDepot"
 							value="Montant du dépot (€) : " />
-							<p:spinner id="montantDepot" value="#{gestionCompte.montant}" suffix=" €" min="0" required="true"
+							<p:spinner id="montantDepot" value="#{gestionCompte.montant}" stepFactor="50" decimalPlaces="2" suffix=" €" min="0" required="true"
 							requiredMessage="montant obligatoire !"/>
 						<h:message for="montantDepot" styleClass="error" />
 

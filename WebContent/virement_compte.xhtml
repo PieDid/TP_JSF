@@ -36,7 +36,7 @@
 				<div>
 						
 						<p:outputLabel styleClass="text" for="montantVirement" value="Montant du virement: " />
-						<p:spinner id="montantVirement" value="#{gestionCompte.montant}" suffix=" €" min="0" required="true"
+						<p:spinner id="montantVirement" value="#{gestionCompte.montant}" stepFactor="50" decimalPlaces="2" suffix=" €" min="0" required="true"
 							requiredMessage="montant obligatoire !"/>
 						<h:message for="montantVirement" styleClass="error" />	
 

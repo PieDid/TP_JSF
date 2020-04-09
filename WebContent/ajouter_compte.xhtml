@@ -39,7 +39,7 @@
 							
 						<p:outputLabel styleClass="text" for="soldeCompte"
 							value="solde : " />
-						<p:spinner id="soldeCompte" value="#{gestionCompte.compte.solde}" suffix=" €" min="0" required="true"
+						<p:spinner id="soldeCompte" value="#{gestionCompte.compte.solde}" stepFactor="100" decimalPlaces="2" suffix=" €" min="0" required="true"
 							requiredMessage="solde obligatoire !"/>
 						<h:message for="soldeCompte" styleClass="error" />
 
@@ -54,11 +54,11 @@
 						<h:message for="typeCompte" styleClass="error" />
 					
 						<p:outputLabel styleClass="text" for="tauxCompte" value="Taux : " />
-						<p:spinner id="tauxCompte" value="#{gestionCompte.compte.taux}" suffix=" €" min="0" disabled="#{gestionCompte.compte.typeCompte eq 'Courant'}"/>
+						<p:spinner id="tauxCompte" value="#{gestionCompte.compte.taux}"  stepFactor="0.005" decimalPlaces="4" suffix=" " min="0" disabled="#{gestionCompte.compte.typeCompte eq 'Courant'}"/>
 						<h:message  for="tauxCompte" styleClass="error" />	
 						
 						<p:outputLabel styleClass="text" for="decouvertCompte" value="Decouvert : " />
-						<p:spinner id="decouvertCompte" value="#{gestionCompte.compte.decouvert}" suffix=" €" min="0" disabled="#{gestionCompte.compte.typeCompte eq 'Epargne'}"/>
+						<p:spinner id="decouvertCompte" value="#{gestionCompte.compte.decouvert}" suffix=" €" stepFactor="50.00" decimalPlaces="2" min="0" disabled="#{gestionCompte.compte.typeCompte eq 'Epargne'}"/>
 						<h:message  for="decouvertCompte" styleClass="error" />	
 						
 						<p:outputLabel styleClass="text" for="idCLient"

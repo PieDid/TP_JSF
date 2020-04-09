@@ -35,7 +35,7 @@
 
 						<p:outputLabel styleClass="text" for="montantRetrait"
 							value="Montant du retrait (€) : " />
-							<p:spinner id="montantRetrait" value="#{gestionCompte.montant}" suffix=" €" min="0" required="true"
+							<p:spinner id="montantRetrait" value="#{gestionCompte.montant}" suffix=" €"  stepFactor="50" decimalPlaces="2" min="0" required="true"
 							requiredMessage="montant obligatoire !"/>
 						<h:message for="montantRetrait" styleClass="error" />
 

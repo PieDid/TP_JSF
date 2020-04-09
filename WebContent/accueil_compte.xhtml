@@ -17,6 +17,7 @@
 
 
 		<ui:define name="content">
+		<div style = "margin: auto; width: 80%;">
 
 			<!-- =============================================================== -->
 			<!-- ======== Affichage de la liste des clients dans la bdd ========= -->
@@ -28,7 +29,7 @@
 	 -->
 
 			<div id="ListeComptesConseiller">
-				<h2>Liste des Comptes de vos clients
+				<h2>Liste des Comptes de vos clients <br/><br/>
 				<b:button id = "affichertouscomptes" value="Afficher tous les comptes" look="warning"/>
 				</h2>
 				<h:form style="text-align: left;">
@@ -219,7 +220,7 @@
 			<!-- ========================================================= -->
 
 			<div id="ListeComptes" style="display: none;">
-				<h2>Liste de tous les Comptes
+				<h2>Liste de tous les Comptes <br/><br/>
 				<b:button id = "affichercomptesclients" value="Afficher uniquement les comptes de vos clients" look="warning"/>
 				</h2>
 
@@ -444,6 +445,8 @@
 				$("#tableau-aide").slideToggle("fast");
 			});
 			</script>
+			
+			</div>
 		</ui:define>
 
 	</ui:composition>

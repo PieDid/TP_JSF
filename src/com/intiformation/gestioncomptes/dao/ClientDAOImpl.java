@@ -260,8 +260,9 @@ public class ClientDAOImpl implements IClientDAO {
 				String codePostal = resultatRequete.getString(5);
 				String ville = resultatRequete.getString(6);
 				String telephone = resultatRequete.getString(7);
+				int id_conseiller = resultatRequete.getInt(8);
 
-				client = new Client(id_client, nom, prenom, adresse, codePostal, ville, telephone);
+				client = new Client(id_client, nom, prenom, adresse, codePostal, ville, telephone, id_conseiller);
 
 				// 4.4. Ajout de l'objet dans la liste des hotels
 				listClientsByConseiller.add(client);

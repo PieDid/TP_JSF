@@ -33,3 +33,9 @@ $("#affichertouscomptes").click(function() {
 $("#aide").click(function() {
 	$("#tableau-aide").slideToggle("fast");
 });
+
+$("#afficherclientscomptes").click(function() {
+	$("#ListeClientsConseiller").slideToggle("medium");
+	$("#ListeClients").slideToggle("medium");
+	$("#ListeComptesbyClientId").slideToggle("medium");
+});
